@@ -1,0 +1,10 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+.md
+data/
+libs/
+prueba.html
+prueba.Rmd
+prueba/
