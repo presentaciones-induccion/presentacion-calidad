@@ -4,7 +4,7 @@
     <title>Presentación paquete calidad</title>
     <meta charset="utf-8" />
     <meta name="author" content="" />
-    <meta name="date" content="2021-05-27" />
+    <meta name="date" content="2021-06-04" />
     <script src="calidad_files/kePrint-0.0.1/kePrint.js"></script>
     <link href="calidad_files/lightable-0.0.1/lightable.css" rel="stylesheet" />
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
@@ -27,7 +27,7 @@ class: center, middle
 
 ## Subdepartamento de Diseño de Marcos y Muestras
 
-### Mayo 2021
+### Junio 2021
 
 
 
@@ -487,6 +487,49 @@ Flujograma para evaluación de calidad de los tabulados
 
 
 ---
+background-image: url("imagenes/fondo2.PNG")
+background-size: contain;
+background-position: 100% 0%
+
+# ¿Por qué aplicar el estándar?
+
+- Contiene lineamientos estandarizados a las encuestas de hogares por muestreo a manera de garantizar calidad de las estimaciones publicadas por el INE, y que está disponible también para todos los entes del SEN. 
+
+--
+
+- El INE, como parte de su misión, pone a disposición esta herramienta para el uso de los integrantes del SEN, con el propósito de disponer de información de calidad para la toma de decisiones a nivel nacional y territorial.
+
+--
+
+- Da directrices claras y precisas de hasta cuándo desagregar la información dispuesta en las BBDD de las encuestas de hogares por muestreo.
+
+--
+
+- El Estándar complementa el CV, métrica mayormente empleada por los entes del SEN y las ONE, individualmente, el cual no es suficiente para medir la calidad de las estimaciones, lo que se exacerba para el caso de proporciones y razones definidas entre 0 y 1. 
+
+
+
+---
+
+background-image: url("imagenes/fondo2.PNG")
+background-size: contain;
+background-position: 100% 0%
+
+# ¿Por qué aplicar el estándar?
+
+- Permite catalogar las estimaciones en fiables, poco fiables y no fiables. Además, dictamina si un tabulado evaluado debe ser publicado o no, y a su vez, lo denotado como cuadro estadístico. 
+
+--
+
+- Es concebido como un lineamiento base para garantizar la calidad mínima que deben tener las estimaciones a publicar. 
+
+--
+
+Ante evidencia de errores no muestrales que puedan afectar significativamente las estimaciones o presencia de sesgos se deben adicionar más análisis para el resguardo de la calidad de las estimaciones.
+
+
+
+---
 class: inverse, center, middle
 
 # ¿Consultas?
@@ -610,6 +653,7 @@ Usaremos los datos de CASEN 2017
 ```r
 library(tidyverse)
 library(feather)
+library(readxl)
 
 casen &lt;- read_feather("data/Casen 2017.feather")
 ```
@@ -657,7 +701,7 @@ Es importante indicarle a `survey` qué hacer cuando existen estratos que solo t
 
 
 ```r
-options(survey.lonely.psu = "certainty")
+options(survey.lonely.psu = "adjust") # equivalente a centered de Stata
 ```
 
 
@@ -794,10 +838,10 @@ El paquete `calidad` tiene 2 grandes familias de funciones:
 Podemos hacer los siguientes cálculos
 
 - `create_mean`: calcular la media (ingreso)
-- `create_prop`: proporción o razón (ocupación) 
+- `create_prop`: calcular proporción o razón (ocupación) 
 - `create_tot`: conteo de unidades (ocupación)
 - `create_tot_con`: suma de variables continuas (ingreso)
-- `create_median`: mediana (ingreso)
+- `create_median`: calcular mediana (ingreso)
 
 --
 
@@ -1123,19 +1167,11 @@ Todas las funciones del paquete operan de manera similar
 
 
 ---
-background-image: url("imagenes/fondo2.PNG")
-background-size: contain;
-background-position: 100% 0%
 
-&lt;br&gt;
-&lt;br&gt;
-&lt;br&gt;
-&lt;br&gt;
-&lt;br&gt;
+class: inverse, center, middle
 
-.center[
-  .big[Evaluación del estándar] 
-]
+# Evaluación del estándar
+
 
 
 ---
@@ -1307,6 +1343,35 @@ Tenemos 2 nuevas columnas
 
 - `publicacion`: evaluación general del tabulado
 - `aprueba`: porcentaje de celdas con categoría fiable
+
+---
+background-image: url("imagenes/fondo2.PNG")
+background-size: contain;
+background-position: 100% 0%
+
+# Usando tablas externas
+
+Podemos usar tablas creadas con otra herramienta y evaluarlas con el estándar
+
+--
+
+
+```r
+tabla &lt;- read_excel("data/ejemplo_excel.xlsx")
+evaluate_mean(tabla)
+```
+
+```
+## # A tibble: 2 x 10
+##   sexo   mean    se    gl      n coef_var eval_n     eval_gl     eval_cv calidad
+##   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;       &lt;chr&gt;   &lt;chr&gt;  
+## 1 1      35.7 0.146  1295 103322  0.00409 n suficie~ gl suficie~ cv &lt;= ~ fiable 
+## 2 2      38.6 0.142  1295 113117  0.00368 n suficie~ gl suficie~ cv &lt;= ~ fiable
+```
+--
+
+La única condicion es que las columnas tengan los nombres que espera el paquete
+
 
 ---
 
@@ -1486,6 +1551,16 @@ Si tienen propuestas de mejora o nuevos desarrollos, estaremos felices de revisa
 ### 😄😄😄😄😄
 ]
 
+--
+
+Prontamente, comenzaremos a trabajar colaborativamente con CEPAL 
+
+--
+
+Andrés Gutierrez participará en la creación de nuevas funcionalidades
+
+
+
 ---
 
 background-image: url("imagenes/fondo2.PNG")
@@ -1533,7 +1608,7 @@ class: center, middle
 
 ## Subdepartamento de Diseño de Marcos y Muestras
 
-### Mayo 2021
+### Junio 2021
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
