@@ -305,6 +305,9 @@ table.dataTable.hover tbody tr:hover, table.dataTable.display tbody tr:hover {
   font-size: var(--header-big-font-size);
 }
 
+.small{
+  font-size: 0.85rem;
+}
 
 
 .caja {
