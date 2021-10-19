@@ -26,9 +26,7 @@ class: center, middle
 
 ## Proyecto Estratégico Servicios Compartidos para la Producción Estadística
 
-## Subdepartamento de Diseño de Marcos y Muestras
-
-### Junio 2021
+### Octubre 2021
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = TRUE)
@@ -47,92 +45,18 @@ background-position: 100% 0%
 
 # Contenidos de la presentación
 
-- Contexto 
+- Estándar de calidad INE
 
-- Estándar de calidad en encuestas de hogares
+- Estándar de calidad CEPAL
 
 - Paquete de R para implementar el Estándar
 
----
-
-class: inverse, center, middle
-
-# I. Contexto
-
-
----
-
-background-image: url("imagenes/fondo2.PNG")
-background-size: contain;
-background-position: 100% 0%
-
-# Contexto
-
-- Las encuestas por muestreo como fuente de información
-
---
-
-- Principio de representatividad de las encuestas por muestreo
-
---
-
-- Criterios previos para evaluar la calidad de las estimaciones
-
---
-
-- Disposición de las bases de datos asociadas a las encuestas por muestreo
-
-
----
-
-background-image: url("imagenes/fondo2.PNG")
-background-size: contain;
-background-position: 100% 0%
-
-# Calidad de las estimaciones
-
-
-- Calidad como concepto multidimensional
-
---
-
-- Dimensión de Acuracidad, Confiabilidad o Precisión
-
---
-
-- Fuentes de error de las encuestas: Errores de muestreo y Errores ajenos al muestreo
-
---
-
-- Medida predilecta para medir la calidad: El error cuadrático medio
-
-<br>
-
-$$ECM(\hat{\theta}) = E[\hat{\theta} - \theta]^2 = \sigma^2( \hat{\theta}) + (E[\hat{\theta}] - \theta)^2 $$
-.center[
-$\sigma^2( \hat{\theta}) : \text{Varianza del estimador}$
-
-$E[\hat{\theta}] - \theta: \text{sesgo}$
-
-]
-
----
-background-image: url("imagenes/fondo2.PNG")
-background-size: contain;
-background-position: 100% 0%
-
-# Calidad de las estimaciones
-
-.center[
-<img src="imagenes/sesgo.png" width="800" />
-
-]
 
 ---
 
 class: inverse, center, middle
 
-# II.Estándar de calidad en encuestas de hogares
+# II.Estándar de calidad en encuestas de hogares INE
 
 
 ---
@@ -141,27 +65,29 @@ background-image: url("imagenes/fondo2.PNG")
 background-size: contain;
 background-position: 100% 0%
 
-# Actividades desarrolladas
+# Estándar INE
 
-<br>
+En 2020 el INE publica un estándar de calidad para las estimaciones con **encuestas de hogares**
+
 
 .center[
-<img src="imagenes/flecha.png" width="1000" />
-
+<img src="imagenes/estandar_ine.png" width="900" />
 ]
 
----
+--
 
+
+
+
+---
 
 background-image: url("imagenes/fondo2.PNG")
 background-size: contain;
 background-position: 100% 0%
 
-# Consideraciones aplicadas
+# Estándar INE
 
 - **Cuadro estadístico**, arreglos ordenados de los datos procesados para facilitar la lectura e interpretación
-
-- **Tabulado**, expresión gráfica que sintetiza un valor o estimación producto del cruce de variables
 
 <br>
 
@@ -176,11 +102,9 @@ background-image: url("imagenes/fondo2.PNG")
 background-size: contain;
 background-position: 100% 0%
 
-# Consideraciones aplicadas
+# Estándar INE
 
 - **Cuadro estadístico**, arreglos ordenados de los datos procesados para facilitar la lectura e interpretación
-
-- **Tabulado**, expresión gráfica que sintetiza un valor o estimación producto del cruce de variables
 
 <br>
 
@@ -195,60 +119,7 @@ background-image: url("imagenes/fondo2.PNG")
 background-size: contain;
 background-position: 100% 0%
 
-# Consideraciones aplicadas
-
-- **Cuadro estadístico**, arreglos ordenados de los datos procesados para facilitar la lectura e interpretación
-
-- **Tabulado**, expresión gráfica que sintetiza un valor o estimación producto del cruce de variables
-
-<br>
-
-.center[
-<img src="imagenes/tabla3.png" width="900" />
-]
-
-
----
-
-background-image: url("imagenes/fondo2.PNG")
-background-size: contain;
-background-position: 100% 0%
-
-# Consideraciones aplicadas
-
-- **Cuadro estadístico**, arreglos ordenados de los datos procesados para facilitar la lectura e interpretación
-
-- **Tabulado**, expresión gráfica que sintetiza un valor o estimación producto del cruce de variables
-
-<br>
-
-.center[
-<img src="imagenes/tabla4.png" width="900" />
-]
-
-
----
-background-image: url("imagenes/fondo2.PNG")
-background-size: contain;
-background-position: 100% 0%
-
-# Consideraciones aplicadas
-
-- **Estimador**, es un estadístico (es decir, una función de la muestra) usado para estimar un parámetro desconocido de la población.
-
-<br>
-
-.center[
-<img src="imagenes/consideraciones.png" width="900" />
-]
-
----
-
-background-image: url("imagenes/fondo2.PNG")
-background-size: contain;
-background-position: 100% 0%
-
-# Consideraciones aplicadas
+# Estándar INE
 
 - **Tamaño muestral (tm)**, unidades de análisis que nutren las estimaciones y abarca: viviendas, hogares y/o personas.
 
@@ -260,6 +131,13 @@ background-position: 100% 0%
 
 
 .center[<img src="imagenes/grados_libertad.png" width="800" />]
+
+* **Coeficiente de variación / error estándar**
+
+  + Proporción y razones definidas entre 0 y 1: **CV**
+  
+  + Resto: **SE**
+
 
 ---
 
@@ -282,91 +160,22 @@ background-image: url("imagenes/fondo2.PNG")
 background-size: contain;
 background-position: 100% 0%
 
-# Funciones evaluadas para el SE
+# Estándar INE
 
+- **Estimador** es un estadístico (es decir, una función de la muestra) usado para estimar un parámetro desconocido de la población.
 
-### Enfoque de la recta y del CV logarítmico
+<br>
 
-
-
-.center[<img src="imagenes/formula.png" width="500" />]
-
-
-<img src="imagenes/tres_graficos.png" width="1000" />
-
-.footnote[
-Notas:
-
-[1] La recta que pasa por los puntos: (0,01 ; 0,005) y (0,20; 0,03) quedando como CV los valores 0,50 y 0,15, respectivamente.
-
-[2]  El valor 0,1862 en la última función del máximo 𝑒𝑒 tolerable, constituye el valor que toma esta función evaluada en 𝑝=0,50, en el contexto de un muestreo aleatorio simple y considerando un tamaño muestral de 𝑛=60 unidades. Similar ejercicio se encuentra en Hornik, et al. (2002) y Walker (2003) utilizando 𝑛=41  y 𝑛=68, respectivamente.
-]
-
-
----
-class: animated, fadeIn
-
-background-image: url("imagenes/fondo2.PNG")
-background-size: contain;
-background-position: 100% 0%
-
-# Funciones evaluadas para el SE
-
-### Enfoque de la recta y del CV logarítmico
-
-.center[<img src="imagenes/formula.png" width="500" />]
-
-
-<img src="imagenes/tres_graficos2.png" width="1000" />
-
-.footnote[
-Notas:
-
-[1] La recta que pasa por los puntos: (0,01 ; 0,005) y (0,20; 0,03) quedando como CV los valores 0,50 y 0,15, respectivamente.
-
-[2]  El valor 0,1862 en la última función del máximo 𝑒𝑒 tolerable, constituye el valor que toma esta función evaluada en 𝑝=0,50, en el contexto de un muestreo aleatorio simple y considerando un tamaño muestral de 𝑛=60 unidades. Similar ejercicio se encuentra en Hornik, et al. (2002) y Walker (2003) utilizando 𝑛=41  y 𝑛=68, respectivamente.
+.center[
+<img src="imagenes/consideraciones.png" width="900" />
 ]
 
 ---
-
 background-image: url("imagenes/fondo2.PNG")
 background-size: contain;
 background-position: 100% 0%
 
-# Funciones evaluadas para el SE
-
-### Funciones evaluadas adicionalmente
-
-.center[<img src="imagenes/funciones_evaluadas1.png" width="900" />]
-
-
----
-
-background-image: url("imagenes/fondo2.PNG")
-background-size: contain;
-background-position: 100% 0%
-
-# Funciones evaluadas para el SE
-
-### Funciones evaluadas adicionalmente
-
-.center[<img src="imagenes/funciones_evaluadas2.png" width="900" />]
-
----
-
-class: inverse, center, middle
-
-# Flujogramas de calidad
-
-
-
-
----
-background-image: url("imagenes/fondo2.PNG")
-background-size: contain;
-background-position: 100% 0%
-
-# Estándar de calidad encuestas de hogares
+# Estándar INE
 
 ### I Etapa de aplicación de estándar
 
@@ -382,7 +191,7 @@ background-image: url("imagenes/fondo2.PNG")
 background-size: contain;
 background-position: 100% 0%
 
-# Estándar de calidad encuestas de hogares
+# Estándar INE
 
 ### I Etapa de aplicación de estándar
 
@@ -400,7 +209,7 @@ background-image: url("imagenes/fondo2.PNG")
 background-size: contain;
 background-position: 100% 0%
 
-# Estándar de calidad encuestas de hogares
+# Estándar INE
 
 ### I Etapa de aplicación de estándar
 
@@ -416,7 +225,7 @@ background-image: url("imagenes/fondo2.PNG")
 background-size: contain;
 background-position: 100% 0%
 
-# Estándar de calidad encuestas de hogares
+# Estándar INE
 
 ### I Etapa de aplicación de estándar
 
@@ -434,7 +243,7 @@ background-image: url("imagenes/fondo2.PNG")
 background-size: contain;
 background-position: 100% 0%
 
-# Estándar de calidad encuestas de hogares
+# Estándar INE
 
 ### I Etapa de aplicación de estándar
 
@@ -450,7 +259,7 @@ background-image: url("imagenes/fondo2.PNG")
 background-size: contain;
 background-position: 100% 0%
 
-# Estándar de calidad encuestas de hogares
+# Estándar INE
 
 ### I Etapa de aplicación de estándar
 
@@ -467,7 +276,7 @@ background-image: url("imagenes/fondo2.PNG")
 background-size: contain;
 background-position: 100% 0%
 
-# Estándar de calidad encuestas de hogares
+# Estándar INE
 
 ### I Etapa de aplicación de estándar
 
@@ -486,73 +295,15 @@ background-image: url("imagenes/fondo2.PNG")
 background-size: contain;
 background-position: 100% 0%
 
-# Estándar de calidad encuestas de hogares
+# Estándar INE
 
 ### II Etapa de aplicación de estándar
 
 Flujograma para evaluación de calidad de los tabulados
 
 .center[
-<img src="imagenes/flujograma.png" width="800" />
+<img src="imagenes/flujograma.png" width="600" />
 ]
-
-
----
-background-image: url("imagenes/fondo2.PNG")
-background-size: contain;
-background-position: 100% 0%
-
-# ¿Por qué aplicar el estándar?
-
-- Contiene lineamientos estandarizados a las encuestas de hogares por muestreo a manera de garantizar calidad de las estimaciones publicadas por el INE, y que está disponible también para todos los entes del SEN. 
-
---
-
-- El INE, como parte de su misión, pone a disposición esta herramienta para el uso de los integrantes del SEN, con el propósito de disponer de información de calidad para la toma de decisiones a nivel nacional y territorial.
-
---
-
-- Da directrices claras y precisas de hasta cuándo desagregar la información dispuesta en las BBDD de las encuestas de hogares por muestreo.
-
---
-
-- El Estándar complementa el CV, métrica mayormente empleada por los entes del SEN y las ONE, que individualmente, no es suficiente para medir la calidad de las estimaciones, lo que se exacerba para el caso de proporciones y razones definidas entre 0 y 1.
- 
-
-
-
----
-
-background-image: url("imagenes/fondo2.PNG")
-background-size: contain;
-background-position: 100% 0%
-
-# ¿Por qué aplicar el estándar?
-
-- Permite catalogar las estimaciones en fiables, poco fiables y no fiables. Además, dictamina si un tabulado evaluado debe ser publicado o no, y a su vez, lo denotado como cuadro estadístico. 
-
---
-
-- Es concebido como un lineamiento base para garantizar la calidad mínima que deben tener las estimaciones a publicar. 
-
---
-
-- Ante evidencia de errores no muestrales que puedan afectar significativamente las estimaciones o presencia de sesgos se deben adicionar más análisis para el resguardo de la calidad de las estimaciones.
-
-
-
----
-class: inverse, center, middle
-
-# ¿Consultas?
-
-
----
-
-class: inverse, center, middle
-
-# III.Paquete de R para implementar el Estándar
-
 
 
 ---
@@ -575,47 +326,12 @@ Existen múltiples herramientas (Stata, R, SAS, Python) y todas son válidas
 
 --
 
-Múltiples modalidades dentro de cada herramienta (libertad total, scripts estandarizados, funciones, etc.)
-
---
-
-Es útil contar con una herramienta que **estandarice** los criterios de calidad
-
-
-
----
-
-background-image: url("imagenes/fondo2.PNG")
-background-size: contain;
-background-position: 100% 0%
-
-# Introducción paquete calidad
-
 Una posibilidad es el uso de un **paquete (librería)**
 
 --
 
 El paquete `calidad` implementa el estándar mediante `R`
 
---
-
-### ¿Por qué `R`?
-
---
-
-- El INE está avanzando decididamente en la incorporación de `R` a sus procesos    
-
---
-
-- Es una herramienta gratuita
-
---
-
-- Permite empaquetar soluciones de manera sencilla
-
---
-
-- Rápida absorción de los avances estadísticos (SAE, detección de outliers, imputación, etc.)
 
 --
 
@@ -626,8 +342,6 @@ El paquete `calidad` implementa el estándar mediante `R`
 - Aumentar la eficiencia en el trabajo de los analistas
 
 - Reducir la probabilidad de error en la implementación
-
---
 
 ---
 
@@ -646,9 +360,39 @@ El paquete `calidad` combina el estándar del INE con el paquete `survey`, desar
 
 --
 
+
+**A mediados de este año lanzamos una primera versión del paquete, considerando el estándar del INE**
+
+- media
+- proporciones
+- mediana (con réplicas)
+- tamaños (totales poblacionales)
+- totales 
+
+
+
+---
+
+class: inverse, center, middle
+
+# II. Estándar de calidad CEPAL
+
+
+
+
+---
+background-image: url("imagenes/fondo2.PNG")
+background-size: contain;
+background-position: 100% 0%
+
+# Estándar de calidad CEPAL
+
+Hace algunos meses estamos trabajando con colegas de la CEPAL
+
 .center[
-### Revisaremos velozmente el paquete survey
+<img src="imagenes/estandar_cepal.png" width="400" />
 ]
+
 
 
 ---
@@ -657,21 +401,74 @@ background-image: url("imagenes/fondo2.PNG")
 background-size: contain;
 background-position: 100% 0%
 
-# Brevísima revisión de survey
+# Estándar de calidad CEPAL
 
-Usaremos los datos de CASEN 2017
+* **El estándar CEPAL considera:**
+  + .small[coeficiente de variación]
+  + .red[.small[coeficiente de variación logarítmico]] 
+  + .small[tamaño de muestra]
+  + .red[.small[tamaño de muestra efectivo]] 
+  + .red[.small[conteo de casos no ponderado]]
+  + .small[grados de libertad] 
+
+
+--
+
+* **Nuevas funcionalidades**
+  + .small[nuevos criterios]
+  + .small[flexibilidad de criterios]
+
+
+
+---
+background-image: url("imagenes/fondo2.PNG")
+background-size: contain;
+background-position: 100% 0%
+
+# Estándar de calidad CEPAL
+
+
+
+.center[
+<img src="imagenes/flujo_cepal.png" width="430" />
+]
+
+
+
+
+--
+
+.center[
+### ¡Veamos un poco de código! 
+]
+
+
+---
+
+class: inverse, center, middle
+
+# III. Paquete calidad
+
+
+
+---
+
+background-image: url("imagenes/fondo2.PNG")
+background-size: contain;
+background-position: 100% 0%
+
+# Desmotración paquete calidad
 
 ```{r}
 library(tidyverse)
 library(feather)
 library(readxl)
+library(survey)
 
 casen <- read_feather("data/Casen 2017.feather")
 
 
 ```
-
---
 
 Construyamos algunas variables necesarias para calcular indicadores relevantes del mercado laboral
 
@@ -689,145 +486,38 @@ casen <- casen %>%
 
 ```
 
-```{r, include=F, echo=F}
-
-keys <- casen %>% 
-  group_by(varunit) %>% 
-  slice(1) %>% 
-  ungroup() %>% 
-  mutate(varunit2 = row_number()) %>% 
-  select(varunit2, varunit)
-
-casen <- casen %>% 
-  left_join(keys, by = "varunit") %>% 
-  select(-varunit) %>% 
-  rename(varunit = varunit2)
-
-```
-
-
 ---
+
 background-image: url("imagenes/fondo2.PNG")
 background-size: contain;
 background-position: 100% 0%
 
-# Brevísima revisión de survey
-
-En primer lugar, declaramos el diseño complejo con la función `svydesign`
-```{r}
-library(survey)
-dc <- svydesign(weights = ~expr, ids = ~varunit, strata = ~varstrat, data = casen )
-
-```
-
-Debemos declarar:
-- conglomerados de varianza
-- estratos de varianza
-- factor de expansión
-
---
-
-Es importante indicarle a `survey` qué hacer cuando existen estratos que solo tienen una UPM 
-
-```{r}
-options(survey.lonely.psu = "adjust") # equivalente a centered de Stata
-```
-
-
-
-
----
-background-image: url("imagenes/fondo2.PNG")
-background-size: contain;
-background-position: 100% 0%
-
-# Brevísima revisión de survey
-
-### Ahora podemos usar los paquetes `survey` y  `calidad` 😃😃😃😃😃
-
---
-
-**Calculemos la tasa de desempleo**
-
-```{r}
-svymean(x = ~desocupado, subset(dc, fdt == 1))
-
-```
---
-
-**También podríamos calcularla así**
-
-```{r}
-svyby(formula = ~desocupado, design = dc, by = ~fdt, FUN = svymean)
-```
---
-
-**O así...**
-
-```{r, eval=F}
-svyratio(numerator = ~desocupado, denominator = ~fdt, subset(dc, fdt == 1))
-```
----
-background-image: url("imagenes/fondo2.PNG")
-background-size: contain;
-background-position: 100% 0%
-
-# Brevísima revisión de survey
-
-`survey` permite hacer una infinidad de cálculos 
-
-- `svymean`
-- `svytotal`
-- `svyratio`
-- `svyby`
-- `svyquantile`
-
---
-
-Mediante la función `as.svrepdesign` podemos, además, utilizar métodos de remuestreo
-
-- intervalos de confianza de percentiles
-- cv de percentiles
-
---
-
-.center[
-### El paquete survey es una gran herramienta que nos hace la vida más fácil 
-]
-
-.center[
-<img src="https://media.giphy.com/media/l3V0dy1zzyjbYTQQM/giphy.gif" width="250" />
-]
-
-
-
-
----
-background-image: url("imagenes/fondo2.PNG")
-background-size: contain;
-background-position: 100% 0%
-
-# Instalación paquete calidad
+# Demostración paquete calidad
 
 Lo primero, es descargar el paquete desde [github](https://github.com/inesscc/calidad)
 
-Se requiere el paquete `devtools`
 
 ```{r, eval=F}
 library(devtools)
 install_github("inesscc/calidad")
 ```
+--
+
+Cargamos el paquete en la sesión
+
+```{r}
+library(calidad)
+```
 
 --
 
-### En la consola, aparecerá el siguiente mensaje
+Declaramos el diseño complejo con la función `svydesign` de `survey`
+```{r}
+dc <- svydesign(weights = ~expr, ids = ~varunit, strata = ~varstrat, data = casen )
+
+```
 
 
-.center[
-<img src="imagenes/consola.png" width="350" />
-]
-
-### Debes escribir 3 en la consola y luego enter
 
 ---
 background-image: url("imagenes/fondo2.PNG")
@@ -836,11 +526,6 @@ background-position: 100% 0%
 
 # Panorama general
 
-Lo siguiente, es cargar el paquete en la sesión
-
-```{r}
-library(calidad)
-```
 
 El paquete `calidad` tiene 2 grandes familias de funciones:
 
@@ -853,15 +538,16 @@ Podemos hacer los siguientes cálculos
 
 - `create_mean`: calcular la media (ingreso)
 - `create_prop`: calcular proporción o razón (ocupación) 
-- `create_tot`: conteo de unidades (ocupación)
-- `create_tot_con`: suma de variables continuas (ingreso)
+- `create_total`: suma de variables continuas (ingreso) 
+- `create_size`: conteo de unidades (ocupación)  
 - `create_median`: calcular mediana (ingreso)
 
 --
 
-### Estas funciones devuelven la estimación y los insumos para el estándar
+### Los nombres están alineados con la teoría
 
 ---
+
 background-image: url("imagenes/fondo2.PNG")
 background-size: contain;
 background-position: 100% 0%
@@ -934,7 +620,7 @@ background-position: 100% 0%
 
 # Creando los insumos: create_prop
 
-Volvamos al caso de la tasa de desempleo
+¿Y si queremos calcular la tasa de desempleo?
 
 --
 
@@ -1041,52 +727,24 @@ create_prop(var = ocupado_hombre, denominador = ocupada_mujer,
 
 ```
 
-
-
 ---
+
 background-image: url("imagenes/fondo2.PNG")
 background-size: contain;
 background-position: 100% 0%
 
-# Creando los insumos: median-mean
+# Creando los insumos: create_size
 
-Para calcular la media de edad por sexo, usamos la función `create_mean`
-
-```{r}
-create_mean(var = edad, dominios = sexo, disenio = dc)
-```
---
-
-Para calcular la mediana, usamos `create_median`
-
-En este caso, el valor por defecto para el número de réplicas es 10, pero podemos elegir el valor deseado
-
-```{r}
-create_median(var = edad, dominios = sexo, disenio = dc, replicas = 20)
-```
+Si queremos un conteo de casos, podemos usar `create_size`
 
 --
 
-.red[¡¡El tiempo de ejecución aumenta significativamente con el número de réplicas!!]
-
-
----
-background-image: url("imagenes/fondo2.PNG")
-background-size: contain;
-background-position: 100% 0%
-
-# Creando los insumos: create_tot
-
-Si queremos un conteo de casos, podemos usar `create_tot`
-
---
-
-Por ejemplo, número de ocupados por sexo
+Por ejemplo, número de desocupados por sexo
 
 --
 
 ```{r}
-create_tot(var = desocupado, dominios = sexo, subpop = fdt, disenio = dc)
+create_size(var = desocupado, dominios = sexo, subpop = fdt, disenio = dc)
 
 ```
 
@@ -1095,7 +753,7 @@ create_tot(var = desocupado, dominios = sexo, subpop = fdt, disenio = dc)
 .red[Se requiere que la variable a estimar sea dummy]
 
 ```{r, error=T, eval=T}
-create_tot(var = region, dominios = sexo, subpop = fdt, disenio = dc)
+create_size(var = region, dominios = sexo, subpop = fdt, disenio = dc)
 
 ```
 
@@ -1113,24 +771,33 @@ Hasta el momento hemos revisado
 
 - `create_prop`
 - `create_mean`
-- `create_median`
-- `create_tot`
+- `create_size`
 
 --
 
 Todas las funciones del paquete operan de manera similar
 
+--
+
+Existen más argumentos
+
+- ci
+- deff
+- rel_error
+- ...
+
+--
+
+**Hasta el momento solo hemos visto la generacion de insumos**
+
+
+.center[
+<img src="https://media.giphy.com/media/xUPGcz2H1TXdCz4suY/giphy.gif" width="150" />
+]
 
 
 ---
 
-class: inverse, center, middle
-
-# Evaluación del estándar
-
-
-
----
 background-image: url("imagenes/fondo2.PNG")
 background-size: contain;
 background-position: 100% 0%
@@ -1141,17 +808,24 @@ Existe una función de evaluación para cada tipo de estimación
 
 - `evaluate_mean`
 - `evaluate_prop`
-- `evaluate_tot`
-- `evaluate_tot_con`
-- `evaluate_median`
+- `evaluate_size`
+
 
 --
 
 Estas funciones reciben como argumento la tabla creada por las funciones `create_*`
 
+--
 
+Por defecto, las funciones consideran el estándar INE
+
+- **Grados de libertad**: 9
+- **Tamaño de muestra**: 60
+- **Tramos de CV**: 0.15, 0.3
 
 ---
+
+
 background-image: url("imagenes/fondo2.PNG")
 background-size: contain;
 background-position: 100% 0%
@@ -1203,38 +877,7 @@ Además de las columnas ya vistas, tenemos
 
 ---
 
-background-image: url("imagenes/fondo2.PNG")
-background-size: contain;
-background-position: 100% 0%
 
-# Evaluación del estándar
-
-Veamos qué pasa con las proporciones que son mayores a 1  
-
-```{r}
-casen <- casen %>% 
-  mutate(casado = if_else(ecivil == 5, 1, 0), # separado
-         conviviente  = if_else(ecivil == 6, 1, 0)) # divorciado 
-dc <- svydesign(ids = ~varunit, strata = ~varstrat, weights = ~expr,  data = casen )
-
-```
-
-
-```{r}
-est <- create_prop(var = casado, 
-                   denominador = conviviente,
-                   dominios = metro, 
-                   disenio = dc )
-evaluate_prop(est)
-
-```
-
---
-
-**En este caso, usamos el CV para hacer la evaluación y no el SE** 
-
-
----
 background-image: url("imagenes/fondo2.PNG")
 background-size: contain;
 background-position: 100% 0%
@@ -1248,8 +891,8 @@ El estándar establece que un tabulado puede ser publicado si el 50% de sus celd
 Para saber si el tabulado debe ser publicado, usamos el argumento `publicar`
 
 ```{r}
-est <-  create_tot(var = desocupado, dominios = region+sexo, disenio = dc)
-evaluate_tot(est, publicar = T) %>% 
+est <-  create_size(var = desocupado, dominios = region+sexo, disenio = dc)
+evaluate_size(est, publicar = T) %>% 
   select(region, sexo, total, publicacion, aprueba) %>% 
   slice(1:6)
 ```
@@ -1261,25 +904,6 @@ Tenemos 2 nuevas columnas
 - `publicacion`: evaluación general del tabulado
 - `aprueba`: porcentaje de celdas con categoría fiable
 
----
-background-image: url("imagenes/fondo2.PNG")
-background-size: contain;
-background-position: 100% 0%
-
-# Usando tablas externas
-
-Podemos usar tablas creadas con otra herramienta y evaluarlas con el estándar
-
---
-
-```{r}
-tabla <- read_excel("data/ejemplo_excel.xlsx")
-evaluate_mean(tabla)
-
-```
---
-
-La única condicion es que las columnas tengan los nombres que espera el paquete
 
 
 ---
@@ -1288,26 +912,79 @@ background-image: url("imagenes/fondo2.PNG")
 background-size: contain;
 background-position: 100% 0%
 
-# Visualización estándar
+# Estándar CEPAL
 
-La función `tabla_html` aún está en desarrollo, pero ya está disponible para ser usada
+¿Qué pasa si queremos considerar los criterios de CEPAL?
 
-Recibe como argumento el output de `evaluate` 
+.center[
+<img src="https://media.giphy.com/media/xUPGcz2H1TXdCz4suY/giphy.gif" width="150" />
+]
 
+
+--
 
 ```{r}
+est <- create_size(var = desocupado, dominios = region+sexo, disenio = dc, 
+                   unweighted = T, deff = T, ess = T)
 
-hogares <- casen %>% 
-  filter(pco1 == 1) 
-dc <- svydesign(ids = ~varunit, strata = ~varstrat, weights = ~expr,  data = hogares )
-est <- create_mean(var = yautcorh, dominios = region+sexo+ecivil, disenio = dc)
-tabla_html(evaluate_tot(est) %>% group_by((calidad)) %>%  slice(1:2))  
-
+evaluate_size(est, scheme = "cepal") %>% 
+  select(region, sexo, total, n, gl, coef_var, unweighted, ess, tag) %>% 
+  slice(1:6)
 
 ```
 
 
 ---
+
+background-image: url("imagenes/fondo2.PNG")
+background-size: contain;
+background-position: 100% 0%
+
+# Estándar CEPAL
+
+¿Y si necesito manejar los parámetros del estándar?
+
+.center[
+<img src="https://media.giphy.com/media/xUPGcz2H1TXdCz4suY/giphy.gif" width="150" />
+]
+
+
+--
+
+```{r}
+est <- create_size(var = desocupado, dominios = region+sexo, disenio = dc,
+                   unweighted = T, deff = T, ess = T)
+
+evaluate_size(est, scheme = "cepal", unweighted = 70, ess = 180) %>% 
+  select(region, sexo, total, n, gl, coef_var, unweighted, ess, tag) %>% 
+  slice(1:6)
+
+```
+
+---
+
+
+background-image: url("imagenes/fondo2.PNG")
+background-size: contain;
+background-position: 100% 0%
+
+# Combinación de estándares
+
+El objetivo es generar una herramienta que:
+
+- Implemente los dos estándares
+
+- Tenga flexibilidad para los usuarios
+
+.center[
+<img src="imagenes/estandar_cepal_ine.png" width="550" />
+]
+
+
+
+
+---
+
 background-image: url("imagenes/fondo2.PNG")
 background-size: contain;
 background-position: 100% 0%
@@ -1383,47 +1060,9 @@ Si tienen propuestas de mejora o nuevos desarrollos, estaremos felices de revisa
 ### 😄😄😄😄😄
 ]
 
---
-
-Prontamente, comenzaremos a trabajar colaborativamente con CEPAL 
-
---
-
-Andrés Gutierrez participará en la creación de nuevas funcionalidades
 
 
 
----
-
-background-image: url("imagenes/fondo2.PNG")
-background-size: contain;
-background-position: 100% 0%
-
-# Desarrollo aplicativo web
-
-Este paquete busca ayudar a usuarios externos que trabajen con `R`
-
---
-
-El lenguaje de programación sigue siendo una barrera 
-
---
-
-.center[
-<img src="https://media.giphy.com/media/a5viI92PAF89q/giphy.gif" width="150" />
-]
-
---
-
-.center[
-<img src="imagenes/diagrama_aplicacion.png" width="250" />
-]
-
-
-
---
-
-### ¡Veamos la aplicación!
 
 ---
 
@@ -1438,6 +1077,4 @@ class: center, middle
 
 ## Proyecto Estratégico Servicios Compartidos para la Producción Estadística
 
-## Subdepartamento de Diseño de Marcos y Muestras
-
-### Junio 2021
+### Octubre 2021
