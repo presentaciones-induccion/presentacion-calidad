@@ -961,26 +961,6 @@ evaluate_size(est, scheme = "cepal", unweighted = 70, ess = 180) %>%
 
 ```
 
----
-
-
-background-image: url("imagenes/fondo2.PNG")
-background-size: contain;
-background-position: 100% 0%
-
-# Combinación de estándares
-
-El objetivo es generar una herramienta que:
-
-- Implemente los dos estándares
-
-- Tenga flexibilidad para los usuarios
-
-.center[
-<img src="imagenes/estandar_cepal_ine.png" width="550" />
-]
-
-
 
 
 ---
@@ -1024,6 +1004,30 @@ insumos <- map_df(c("edad", "esc"), ~create_mean(var = .x, dominios = "sexo",
                                                    disenio = dc, standard_eval = T, rm.na = T ))
 
 ```
+
+
+
+---
+
+
+background-image: url("imagenes/fondo2.PNG")
+background-size: contain;
+background-position: 100% 0%
+
+# Combinación de estándares
+
+El objetivo es generar una herramienta que:
+
+- Implemente los dos estándares
+
+- Tenga flexibilidad para los usuarios
+
+.center[
+<img src="imagenes/estandar_cepal_ine.png" width="550" />
+]
+
+
+
 
 
 ---

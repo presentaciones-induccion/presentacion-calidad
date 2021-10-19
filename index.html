@@ -1044,26 +1044,6 @@ evaluate_size(est, scheme = "cepal", unweighted = 70, ess = 180) %&gt;%
 ## 6      6    1 12760 7593  88 0.08577712        222 4522.697 publish
 ```
 
----
-
-
-background-image: url("imagenes/fondo2.PNG")
-background-size: contain;
-background-position: 100% 0%
-
-# Combinación de estándares
-
-El objetivo es generar una herramienta que:
-
-- Implemente los dos estándares
-
-- Tenga flexibilidad para los usuarios
-
-.center[
-&lt;img src="imagenes/estandar_cepal_ine.png" width="550" /&gt;
-]
-
-
 
 
 ---
@@ -1104,6 +1084,30 @@ Podemos hacer lo mismo, utilizando el paquete `purrr` (mucho más recomendado qu
 insumos &lt;- map_df(c("edad", "esc"), ~create_mean(var = .x, dominios = "sexo",
                                                    disenio = dc, standard_eval = T, rm.na = T ))
 ```
+
+
+
+---
+
+
+background-image: url("imagenes/fondo2.PNG")
+background-size: contain;
+background-position: 100% 0%
+
+# Combinación de estándares
+
+El objetivo es generar una herramienta que:
+
+- Implemente los dos estándares
+
+- Tenga flexibilidad para los usuarios
+
+.center[
+&lt;img src="imagenes/estandar_cepal_ine.png" width="550" /&gt;
+]
+
+
+
 
 
 ---
