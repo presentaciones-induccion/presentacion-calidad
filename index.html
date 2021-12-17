@@ -4,7 +4,7 @@
     <title>Presentación paquete calidad</title>
     <meta charset="utf-8" />
     <meta name="author" content="" />
-    <meta name="date" content="2021-10-19" />
+    <meta name="date" content="2021-12-16" />
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
     <link rel="stylesheet" href="https:\\cdnjs.cloudflare.com\ajax\libs\animate.css\3.7.0\animate.min.css" type="text/css" />
   </head>
@@ -23,7 +23,7 @@ class: center, middle
 
 ## Proyecto Estratégico Servicios Compartidos para la Producción Estadística
 
-### Octubre 2021
+### Diciembre 2021
 
 
 
@@ -40,14 +40,75 @@ background-position: 100% 0%
 
 - Estándar de calidad CEPAL
 
-- Paquete de R para implementar el Estándar
+- Paquete de R para implementar estándares
 
 
 ---
 
 class: inverse, center, middle
 
-# II.Estándar de calidad en encuestas de hogares INE
+# Estándar de calidad en encuestas de hogares INE
+
+
+---
+
+class: inverse, center, middle
+
+# Antes de empezar...
+
+
+---
+background-image: url("imagenes/fondo2.PNG")
+background-size: contain;
+background-position: 100% 0%
+
+
+# ¿Qué significa calidad estadística? 
+
+### Pensemos en 2 distribuciones distintas
+
+
+
+
+.pull-left[
+
+&lt;img src="calidad_files/figure-html/unnamed-chunk-2-1.png" style="display: block; margin: auto;" /&gt;
+]
+
+
+
+.pull-right[
+
+&lt;img src="calidad_files/figure-html/unnamed-chunk-3-1.png" style="display: block; margin: auto;" /&gt;
+]
+
+--
+
+Intervalos de confianza demasiado amplios, no son informativos
+
+--
+
+Una estimación debe cumplir una cierta precisión (calidad) para que sea útil 
+
+---
+background-image: url("imagenes/fondo2.PNG")
+background-size: contain;
+background-position: 100% 0%
+
+# Ejemplo de una estimación con baja precisión
+
+
+.pull-left[
+&lt;img src="imagenes/mafalda_miguelito.PNG" width="400" /&gt;
+
+]
+
+--
+
+.pull-right[
+&lt;img src="imagenes/miguelito.png" width="250" /&gt;
+
+]
 
 
 ---
@@ -64,9 +125,6 @@ En 2020 el INE publica un estándar de calidad para las estimaciones con **encue
 .center[
 &lt;img src="imagenes/estandar_ine.png" width="900" /&gt;
 ]
-
---
-
 
 
 
@@ -112,13 +170,13 @@ background-position: 100% 0%
 
 # Estándar INE
 
-- **Tamaño muestral (tm)**, unidades de análisis que nutren las estimaciones y abarca: viviendas, hogares y/o personas.
+- **Tamaño muestral (tm)**, unidades de análisis que nutren las estimaciones (viviendas, hogares y/o personas)
 
 * **Grados de libertad (gl)** 
 
-  + .small[**Proporción y razones definidas entre 0 y 1**, el cálculo de los 𝑑𝑓 y 𝑡𝑚 se realiza  sobre las unidades de análisis en la subpoblación que participan en el “Denominador”.]
+  + .small[**Proporción y razones definidas entre 0 y 1**, el cálculo se realiza considerando las unidades que participan en el “denominador”.]
 
-  + .small[**Resto**, el cálculo se realiza tomando en cuenta las unidades de análisis que participan en la estimación.] 
+  + .small[**Resto**, el cálculo se realiza considerando las unidades que presentan la característica de interés] 
 
 
 .center[&lt;img src="imagenes/grados_libertad.png" width="800" /&gt;]
@@ -153,112 +211,12 @@ background-position: 100% 0%
 
 # Estándar INE
 
-- **Estimador** es un estadístico (es decir, una función de la muestra) usado para estimar un parámetro desconocido de la población.
+**Indicadores de calidad**
 
 &lt;br&gt;
 
 .center[
 &lt;img src="imagenes/consideraciones.png" width="900" /&gt;
-]
-
----
-background-image: url("imagenes/fondo2.PNG")
-background-size: contain;
-background-position: 100% 0%
-
-# Estándar INE
-
-### I Etapa de aplicación de estándar
-
-Flujograma para evaluación de calidad de las estimaciones
-
-.center[
-&lt;img src="imagenes/flujo1.png" width="1000" /&gt;
-]
-
----
-
-background-image: url("imagenes/fondo2.PNG")
-background-size: contain;
-background-position: 100% 0%
-
-# Estándar INE
-
-### I Etapa de aplicación de estándar
-
-Flujograma para evaluación de calidad de las estimaciones
-
-
-.center[
-&lt;img src="imagenes/flujo2.png" width="1000" /&gt;
-]
-
-
----
-
-background-image: url("imagenes/fondo2.PNG")
-background-size: contain;
-background-position: 100% 0%
-
-# Estándar INE
-
-### I Etapa de aplicación de estándar
-
-Flujograma para evaluación de calidad de las estimaciones
-
-
-.center[
-&lt;img src="imagenes/flujo3.png" width="1000" /&gt;
-]
-
----
-background-image: url("imagenes/fondo2.PNG")
-background-size: contain;
-background-position: 100% 0%
-
-# Estándar INE
-
-### I Etapa de aplicación de estándar
-
-Flujograma para evaluación de calidad de las estimaciones
-
-
-.center[
-&lt;img src="imagenes/flujo4.png" width="1000" /&gt;
-]
-
-
----
-
-background-image: url("imagenes/fondo2.PNG")
-background-size: contain;
-background-position: 100% 0%
-
-# Estándar INE
-
-### I Etapa de aplicación de estándar
-
-Flujograma para evaluación de calidad de las estimaciones
-
-
-.center[
-&lt;img src="imagenes/flujo5.png" width="1000" /&gt;
-]
-
----
-background-image: url("imagenes/fondo2.PNG")
-background-size: contain;
-background-position: 100% 0%
-
-# Estándar INE
-
-### I Etapa de aplicación de estándar
-
-Flujograma para evaluación de calidad de las estimaciones
-
-
-.center[
-&lt;img src="imagenes/flujo6.png" width="1000" /&gt;
 ]
 
 ---
@@ -342,7 +300,7 @@ background-position: 100% 0%
 
 # Introducción paquete calidad
 
-El paquete `calidad` combina el estándar del INE con el paquete `survey`, desarrollado por Thomas Lumley
+El paquete `calidad` combina conceptos de calidad con el paquete `survey`, desarrollado por Thomas Lumley
 
 
 .center[
@@ -360,120 +318,49 @@ El paquete `calidad` combina el estándar del INE con el paquete `survey`, desar
 - tamaños (totales poblacionales)
 - totales 
 
-
-
 ---
-
 class: inverse, center, middle
 
-# II. Estándar de calidad CEPAL
-
-
-
-
----
-background-image: url("imagenes/fondo2.PNG")
-background-size: contain;
-background-position: 100% 0%
-
-# Estándar de calidad CEPAL
-
-Hace algunos meses estamos trabajando con colegas de la CEPAL
-
-.center[
-&lt;img src="imagenes/estandar_cepal.png" width="400" /&gt;
-]
-
+# Implementación en R
 
 
 ---
+
 
 background-image: url("imagenes/fondo2.PNG")
 background-size: contain;
 background-position: 100% 0%
 
-# Estándar de calidad CEPAL
+# Demostración paquete calidad
 
-* **El estándar CEPAL considera:**
-  + .small[coeficiente de variación]
-  + .red[.small[coeficiente de variación logarítmico]] 
-  + .small[tamaño de muestra]
-  + .red[.small[tamaño de muestra efectivo]] 
-  + .red[.small[conteo de casos no ponderado]]
-  + .small[grados de libertad] 
-
+Trabajaremos con los datos de CASEN 2020 (cargados en el paquete) 
 
 --
-
-* **Nuevas funcionalidades**
-  + .small[nuevos criterios]
-  + .small[flexibilidad de criterios]
-
-
-
----
-background-image: url("imagenes/fondo2.PNG")
-background-size: contain;
-background-position: 100% 0%
-
-# Estándar de calidad CEPAL
-
-
-
-.center[
-&lt;img src="imagenes/flujo_cepal.png" width="430" /&gt;
-]
-
-
-
-
---
-
-.center[
-### ¡Veamos un poco de código! 
-]
-
-
----
-
-class: inverse, center, middle
-
-# III. Paquete calidad
-
-
-
----
-
-background-image: url("imagenes/fondo2.PNG")
-background-size: contain;
-background-position: 100% 0%
-
-# Desmotración paquete calidad
-
-
-```r
-library(tidyverse)
-library(feather)
-library(readxl)
-library(survey)
-
-casen &lt;- read_feather("data/Casen 2017.feather")
-```
 
 Construyamos algunas variables necesarias para calcular indicadores relevantes del mercado laboral
 
 
+
+
+
 ```r
-casen &lt;- casen %&gt;% 
+casen_edit &lt;- casen %&gt;% 
   mutate(fdt = if_else(activ %in% c(1, 2), 1, 0, missing = 0), # fuerza de trabajo
          ocupado = if_else(activ == 1, 1, 0, missing = 0), # persona ocupada
          desocupado = if_else(activ == 2, 1, 0, missing = 0), # persona desocupada
-         metro = if_else(region == 13, 1, 0),
-         num = if_else(row_number() &lt;= 1, 1, 0),
-         denom = 1) 
+         metro = if_else(region == 13, 1, 0)) 
 ```
 
+**Variables *dummy*:**
+
+- fuerza de trabajo
+- ocupado
+- desocupado
+- metro (pertenece a la región metropolitana)
+
 ---
+
+
 
 background-image: url("imagenes/fondo2.PNG")
 background-size: contain;
@@ -503,10 +390,11 @@ library(calidad)
 Declaramos el diseño complejo con la función `svydesign` de `survey`
 
 ```r
-dc &lt;- svydesign(weights = ~expr, ids = ~varunit, strata = ~varstrat, data = casen )
+dc &lt;- svydesign(weights = ~expr, ids = ~cod_upm, strata = ~estrato, data = casen_edit )
+options(survey.lonely.psu = "certainty")
 ```
 
-
+Debemos decirle a `R` qué hacer con la varianza cuando encuentra estratos con una sola UPM
 
 ---
 background-image: url("imagenes/fondo2.PNG")
@@ -525,15 +413,13 @@ El paquete `calidad` tiene 2 grandes familias de funciones:
 
 Podemos hacer los siguientes cálculos
 
-- `create_mean`: calcular la media (ingreso)
-- `create_prop`: calcular proporción o razón (ocupación) 
-- `create_total`: suma de variables continuas (ingreso) 
-- `create_size`: conteo de unidades (ocupación)  
-- `create_median`: calcular mediana (ingreso)
+-  media (ingreso)
+-  proporción o razón (ocupación) 
+-  suma de variables continuas (ingreso) 
+-  conteo de unidades (ocupación)  
+-  mediana (ingreso)
 
---
 
-### Los nombres están alineados con la teoría
 
 ---
 
@@ -553,9 +439,9 @@ create_mean(var = edad, dominios = sexo, disenio = dc)
 ```
 
 ```
-##   sexo     mean        se   gl      n    coef_var
-## 1    1 35.66089 0.1458573 1295 103322 0.004090120
-## 2    2 38.56040 0.1418116 1295 113117 0.003677648
+##   sexo     mean        se    gl     n    coef_var
+## 1    1 35.81776 0.1320879 10701 86096 0.003687776
+## 2    2 38.88116 0.2030783 10818 99341 0.005223053
 ```
 
 - `var`: variable a estimar
@@ -602,9 +488,9 @@ create_mean(var = "edad", dominios = sexo,  disenio = dc)
 ```
 
 ```
-##   sexo     mean        se   gl      n    coef_var
-## 1    1 35.66089 0.1458573 1295 103322 0.004090120
-## 2    2 38.56040 0.1418116 1295 113117 0.003677648
+##   sexo     mean        se    gl     n    coef_var
+## 1    1 35.81776 0.1320879 10701 86096 0.003687776
+## 2    2 38.88116 0.2030783 10818 99341 0.005223053
 ```
 
 --
@@ -629,10 +515,6 @@ background-position: 100% 0%
 
 Para ello, contamos con la función `create_prop`
 
---
-
-Podríamos hacer algo similar a lo anterior
-
 
 
 ```r
@@ -656,6 +538,9 @@ create_prop(var = desocupado, dominios = sexo, subpop = fdt, disenio = dc)
 
 Es muy importante considerar que la variable **subpop debe ser dummy** 
 
+--
+
+Con subpop evitamos error en el cálculo de la varianza 
 
 ---
 background-image: url("imagenes/fondo2.PNG")
@@ -676,11 +561,11 @@ create_prop(var = desocupado, dominios = sexo+metro, subpop = fdt, disenio = dc)
 ```
 
 ```
-##   sexo metro   objetivo          se   coef_var   gl     n
-## 1    1     0 0.07336204 0.001607494 0.02191180 1048 45421
-## 2    2     0 0.09450031 0.002174768 0.02301334 1048 32738
-## 3    1     1 0.06827905 0.002992828 0.04383230  247 11990
-## 4    2     1 0.08064328 0.004161192 0.05159999  247 10071
+##   sexo metro  objetivo          se   coef_var   gl     n
+## 1    1     0 0.1171641 0.002540917 0.02168682 7977 34097
+## 2    2     0 0.1417696 0.003012865 0.02125184 7750 27786
+## 3    1     1 0.1097366 0.004349727 0.03963790 2019  9901
+## 4    2     1 0.1364608 0.008565356 0.06276788 1972  9055
 ```
 
 ---
@@ -699,7 +584,7 @@ Lo primero que debemos hacer es crear variables auxiliares
 
 
 ```r
-casen &lt;- casen %&gt;% 
+casen_edit &lt;- casen_edit %&gt;% 
   mutate(ocupado_hombre = if_else(sexo == 1, ocupado, 0),
          ocupada_mujer  = if_else(sexo == 2, ocupado, 0))
 ```
@@ -709,7 +594,7 @@ Volvemos a declarar el diseño para incluir las variables recién creadas
 
 
 ```r
-dc &lt;- svydesign(ids = ~varunit, strata = ~varstrat, weights = ~expr,  data = casen )
+dc &lt;- svydesign(weights = ~expr, ids = ~cod_upm, strata = ~estrato, data = casen_edit )
 ```
 
 
@@ -730,9 +615,10 @@ create_prop(var = ocupado_hombre, denominador = ocupada_mujer,
 ```
 
 ```
-##                objetivo         se    coef_var   gl     n
-## ocupado_hombre 1.299732 0.01005358 0.007735116 1295 92417
+##                objetivo         se   coef_var    gl     n
+## ocupado_hombre 1.186844 0.01190812 0.01003344 10476 70576
 ```
+
 --
 
 Podemos agregar el parámetro `dominios`, si queremos desagregar 
@@ -745,49 +631,9 @@ create_prop(var = ocupado_hombre, denominador = ocupada_mujer,
 ```
 
 ```
-##   metro objetivo         se    coef_var   gl     n
-## 1     0 1.388540 0.01114894 0.008029259 1048 71995
-## 2     1 1.197388 0.01634676 0.013652016  247 20422
-```
-
----
-
-background-image: url("imagenes/fondo2.PNG")
-background-size: contain;
-background-position: 100% 0%
-
-# Creando los insumos: create_size
-
-Si queremos un conteo de casos, podemos usar `create_size`
-
---
-
-Por ejemplo, número de desocupados por sexo
-
---
-
-
-```r
-create_size(var = desocupado, dominios = sexo, subpop = fdt, disenio = dc)
-```
-
-```
-##   sexo  total       se     n   gl   coef_var
-## 1    1 341218 7737.074 57411 1295 0.02267487
-## 2    2 330958 9341.834 42809 1295 0.02822665
-```
-
---
-
-.red[Se requiere que la variable a estimar sea dummy]
-
-
-```r
-create_size(var = region, dominios = sexo, subpop = fdt, disenio = dc)
-```
-
-```
-## Error in create_size(var = region, dominios = sexo, subpop = fdt, disenio = dc): Debes usar una variable dummy cuando desagregas!
+##   metro objetivo         se   coef_var   gl     n
+## 1     0 1.238095 0.01312396 0.01060013 8407 53906
+## 2     1 1.127986 0.02073977 0.01838654 2069 16670
 ```
 
 
@@ -800,11 +646,7 @@ background-position: 100% 0%
 
 # Argumentos adicionales
 
-Hasta el momento hemos revisado 
-
-- `create_prop`
-- `create_mean`
-- `create_size`
+Solo hemos revisado  `create_prop` y `create_mean`
 
 --
 
@@ -828,34 +670,6 @@ Existen más argumentos
 &lt;img src="https://media.giphy.com/media/xUPGcz2H1TXdCz4suY/giphy.gif" width="150" /&gt;
 ]
 
-
----
-
-background-image: url("imagenes/fondo2.PNG")
-background-size: contain;
-background-position: 100% 0%
-
-# Evaluación del estándar
-
-Existe una función de evaluación para cada tipo de estimación
-
-- `evaluate_mean`
-- `evaluate_prop`
-- `evaluate_size`
-
-
---
-
-Estas funciones reciben como argumento la tabla creada por las funciones `create_*`
-
---
-
-Por defecto, las funciones consideran el estándar INE
-
-- **Grados de libertad**: 9
-- **Tamaño de muestra**: 60
-- **Tramos de CV**: 0.15, 0.3
-
 ---
 
 
@@ -876,9 +690,9 @@ evaluate_mean(est)
 ```
 
 ```
-##   sexo     mean        se   gl      n    coef_var       eval_n       eval_gl
-## 1    1 35.66089 0.1458573 1295 103322 0.004090120 n suficiente gl suficiente
-## 2    2 38.56040 0.1418116 1295 113117 0.003677648 n suficiente gl suficiente
+##   sexo     mean        se    gl     n    coef_var       eval_n       eval_gl
+## 1    1 35.81776 0.1320879 10701 86096 0.003687776 n suficiente gl suficiente
+## 2    2 38.88116 0.2030783 10818 99341 0.005223053 n suficiente gl suficiente
 ##      eval_cv calidad
 ## 1 cv &lt;= 0.15  fiable
 ## 2 cv &lt;= 0.15  fiable
@@ -893,6 +707,15 @@ Tenemos 4 columnas nuevas
 - `eval_cv`: indica el tramo en el que está el cv
 - `calidad`: evaluación final de la estimación
 
+--
+
+Por defecto, las funciones de evaluación consideran el estándar INE
+
+- **Grados de libertad**: 9
+- **Tamaño de muestra**: 60
+- **Tramos de CV**: 0.15, 0.3
+
+
 
 ---
 background-image: url("imagenes/fondo2.PNG")
@@ -905,17 +728,17 @@ Veamos el caso de la tasa de desempleo
 
 
 ```r
-est &lt;-  create_prop(var = desocupado, dominios = sexo, disenio = dc)
+est &lt;-  create_prop(var = desocupado, subpop = fdt, dominios = sexo, disenio = dc)
 evaluate_prop(est)
 ```
 
 ```
-##   sexo   objetivo           se   coef_var   gl      n       eval_n
-## 1    1 0.04028685 0.0009036192 0.02242963 1295 103322 n suficiente
-## 2    2 0.03544319 0.0009233508 0.02605157 1295 113117 n suficiente
-##         eval_gl prop_est tipo_eval cuadratica     eval_se eval_cv calidad
-## 1 gl suficiente &lt;= a 0.5   Eval SE 0.01305769 SE adecuado    &lt;NA&gt;  fiable
-## 2 gl suficiente &lt;= a 0.5   Eval SE 0.01198890 SE adecuado    &lt;NA&gt;  fiable
+##   sexo  objetivo          se   coef_var   gl     n       eval_n       eval_gl
+## 1    1 0.1138937 0.002402195 0.02109156 9996 43998 n suficiente gl suficiente
+## 2    2 0.1393067 0.004271094 0.03065964 9722 36841 n suficiente gl suficiente
+##   prop_est tipo_eval cuadratica     eval_se eval_cv calidad
+## 1 &lt;= a 0.5   Eval SE 0.02610701 SE adecuado    &lt;NA&gt;  fiable
+## 2 &lt;= a 0.5   Eval SE 0.02985879 SE adecuado    &lt;NA&gt;  fiable
 ```
 --
 
@@ -944,20 +767,20 @@ Para saber si el tabulado debe ser publicado, usamos el argumento `publicar`
 
 
 ```r
-est &lt;-  create_size(var = desocupado, dominios = region+sexo, disenio = dc)
-evaluate_size(est, publicar = T) %&gt;% 
+est &lt;-  create_tot(var = desocupado, subpop = fdt, dominios = region+sexo, disenio = dc)
+evaluate_tot(est, publicar = T) %&gt;% 
   select(region, sexo, total, publicacion, aprueba) %&gt;% 
   slice(1:6)
 ```
 
 ```
-##   region sexo total       publicacion                        aprueba
-## 1      1    1  6100 publicar tabulado 93.75% de estimaciones fiables
-## 2      2    1 11723 publicar tabulado 93.75% de estimaciones fiables
-## 3      3    1  5189 publicar tabulado 93.75% de estimaciones fiables
-## 4      4    1 21962 publicar tabulado 93.75% de estimaciones fiables
-## 5      5    1 36094 publicar tabulado 93.75% de estimaciones fiables
-## 6      6    1 12760 publicar tabulado 93.75% de estimaciones fiables
+##   region sexo total       publicacion                      aprueba
+## 1      1    1  9436 publicar tabulado 100% de estimaciones fiables
+## 2      2    1 21139 publicar tabulado 100% de estimaciones fiables
+## 3      3    1  8586 publicar tabulado 100% de estimaciones fiables
+## 4      4    1 22801 publicar tabulado 100% de estimaciones fiables
+## 5      5    1 56607 publicar tabulado 100% de estimaciones fiables
+## 6      6    1 24507 publicar tabulado 100% de estimaciones fiables
 ```
 
 --
@@ -969,42 +792,142 @@ Tenemos 2 nuevas columnas
 
 
 
+
+
+---
+
+class: inverse, center, middle
+
+# Estándar de calidad CEPAL
+
 ---
 
 background-image: url("imagenes/fondo2.PNG")
 background-size: contain;
 background-position: 100% 0%
 
-# Estándar CEPAL
+# Estándar de calidad CEPAL
 
-¿Qué pasa si queremos considerar los criterios de CEPAL?
 
 .center[
-&lt;img src="https://media.giphy.com/media/xUPGcz2H1TXdCz4suY/giphy.gif" width="150" /&gt;
+&lt;img src="imagenes/estandar_cepal.png" width="450" /&gt;
 ]
+
+
+
+---
+
+background-image: url("imagenes/fondo2.PNG")
+background-size: contain;
+background-position: 100% 0%
+
+# Estándar de calidad CEPAL
+
+* **El estándar CEPAL considera:**
+  + .small[coeficiente de variación]
+  + .red[.small[coeficiente de variación logarítmico]] 
+  + .small[tamaño de muestra]
+  + .red[.small[tamaño de muestra efectivo]] 
+  + .red[.small[conteo de casos no ponderado]]
+  + .small[grados de libertad] 
 
 
 --
 
+### Nuevas funcionalidades
+ 
+
+.center[
+&lt;img src="https://media2.giphy.com/media/jVTkOsIRdx4was3Toi/giphy.gif?cid=ecf05e476ur52p5tltvqzzfoawj92bq9kf3soarb9ba7clm3&amp;rid=giphy.gif&amp;ct=g" width="250" /&gt;
+]
+
+
+
+
+---
+background-image: url("imagenes/fondo2.PNG")
+background-size: contain;
+background-position: 100% 0%
+
+# Nuevos desarrollos con CEPAL
+
+**Nombres alineados con la teoría** 🤓
+
+- `create_mean`: media 
+- `create_total`: suma de variable continua (create_tot_con)
+- `create_size`: conteo de casos (create_tot)
+- `create_prop`: proporciones
+
+--
+
+.red[`create_size` != `create_tot`] 
+
+--
+
+**Nuevos indicadores de calidad**
+
+**Flexibilización de umbrales**
+
+
+---
+background-image: url("imagenes/fondo2.PNG")
+background-size: contain;
+background-position: 100% 0%
+
+# Estándar de calidad CEPAL
+
+
+
+.center[
+&lt;img src="imagenes/flujo_cepal.png" width="430" /&gt;
+]
+
+
+
+
+--
+
+.center[
+### ¡Veamos un poco de código! 
+]
+
+---
+
+background-image: url("imagenes/fondo2.PNG")
+background-size: contain;
+background-position: 100% 0%
+
+# Implementación estándar CEPAL
+
+Se deben incluir nuevos parámetros en las funciones `create_`
+
 
 ```r
 est &lt;- create_size(var = desocupado, dominios = region+sexo, disenio = dc, 
-                   unweighted = T, deff = T, ess = T)
+*                  unweighted = T, deff = T, ess = T)
+```
 
-evaluate_size(est, scheme = "cepal") %&gt;% 
+--
+
+Y agregar cepal  en evaluate 
+
+
+```r
+*evaluate_size(est, scheme = "cepal") %&gt;%
   select(region, sexo, total, n, gl, coef_var, unweighted, ess, tag) %&gt;% 
   slice(1:6)
 ```
 
 ```
-##   region sexo total    n  gl   coef_var unweighted      ess     tag
-## 1      1    1  6100 4950  56 0.10140029        178 2523.386 publish
-## 2      2    1 11723 4152  49 0.10483573        169 2082.155 publish
-## 3      3    1  5189 3302  40 0.11557937        130 1833.370 publish
-## 4      4    1 21962 4754  56 0.07827425        279 2540.854 publish
-## 5      5    1 36094 9197 121 0.06598253        368 5228.635 publish
-## 6      6    1 12760 7593  88 0.08577712        222 4522.697 publish
+##   region sexo total    n   gl   coef_var unweighted      ess     tag
+## 1      1    1  9436 3981  419 0.08412127        220 2545.121 publish
+## 2      2    1 21139 3572  493 0.08197950        243 2130.673 publish
+## 3      3    1  8586 3468  557 0.08745271        205 2076.391 publish
+## 4      4    1 22801 3783  495 0.08145155        238 2402.469 publish
+## 5      5    1 56607 8397 1119 0.06976443        511 2987.021 publish
+## 6      6    1 24507 5830  611 0.07226518        327 3470.302 publish
 ```
+
 
 
 ---
@@ -1029,19 +952,19 @@ background-position: 100% 0%
 est &lt;- create_size(var = desocupado, dominios = region+sexo, disenio = dc,
                    unweighted = T, deff = T, ess = T)
 
-evaluate_size(est, scheme = "cepal", unweighted = 70, ess = 180) %&gt;% 
+*evaluate_size(est, scheme = "cepal", unweighted = 220, ess = 200) %&gt;%
   select(region, sexo, total, n, gl, coef_var, unweighted, ess, tag) %&gt;% 
   slice(1:6)
 ```
 
 ```
-##   region sexo total    n  gl   coef_var unweighted      ess     tag
-## 1      1    1  6100 4950  56 0.10140029        178 2523.386 publish
-## 2      2    1 11723 4152  49 0.10483573        169 2082.155 publish
-## 3      3    1  5189 3302  40 0.11557937        130 1833.370 publish
-## 4      4    1 21962 4754  56 0.07827425        279 2540.854 publish
-## 5      5    1 36094 9197 121 0.06598253        368 5228.635 publish
-## 6      6    1 12760 7593  88 0.08577712        222 4522.697 publish
+##   region sexo total    n   gl   coef_var unweighted      ess     tag
+## 1      1    1  9436 3981  419 0.08412127        220 2545.121 publish
+## 2      2    1 21139 3572  493 0.08197950        243 2130.673 publish
+## 3      3    1  8586 3468  557 0.08745271        205 2076.391 supress
+## 4      4    1 22801 3783  495 0.08145155        238 2402.469 publish
+## 5      5    1 56607 8397 1119 0.06976443        511 2987.021 publish
+## 6      6    1 24507 5830  611 0.07226518        327 3470.302 publish
 ```
 
 
@@ -1058,7 +981,7 @@ Queremos calcular la media para varias variables
 
 --
 
-En este caso, queremos la media de `edad` y `curso`, según sexo
+En este caso, queremos la media de `edad` y `escolaridad`, según sexo
 
 --
 
@@ -1100,14 +1023,30 @@ El objetivo es generar una herramienta que:
 
 - Implemente los dos estándares
 
-- Tenga flexibilidad para los usuarios
+- Ofrezca flexibilidad a los usuarios
 
 .center[
 &lt;img src="imagenes/estandar_cepal_ine.png" width="550" /&gt;
 ]
 
 
+---
+background-image: url("imagenes/fondo2.PNG")
+background-size: contain;
+background-position: 100% 0%
 
+# ¿En qué estamos?
+
+
+- Junto a CEPAL estamos preparando material de difusión para ONEs de la región  
+
+- Traducción y preparación para publicar el paquete en CRAN
+
+- Grupo de trabajo sobre calidad durante 2022 (coordinado por CEPAL)
+
+--
+
+- Paquete de *Survey Solutions* para vincular procesamiento con publicación
 
 
 ---
@@ -1119,10 +1058,6 @@ background-position: 100% 0%
 # Desarrollo open source
 
 El paquete `calidad` es un desarrollo completamente *open source* 
-
---
-
-Estos proyectos se nutren del aporte de la comunidad
 
 --
 
@@ -1161,7 +1096,7 @@ class: center, middle
 
 ## Proyecto Estratégico Servicios Compartidos para la Producción Estadística
 
-### Octubre 2021
+### Diciembre 2021
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
