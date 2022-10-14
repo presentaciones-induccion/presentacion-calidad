@@ -4,9 +4,9 @@
     <title>Presentación paquete calidad</title>
     <meta charset="utf-8" />
     <meta name="author" content="" />
-    <meta name="date" content="2021-12-16" />
+    <meta name="date" content="2022-10-14" />
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
-    <link rel="stylesheet" href="https:\\cdnjs.cloudflare.com\ajax\libs\animate.css\3.7.0\animate.min.css" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -21,9 +21,9 @@ class: center, middle
 
 ## Presentación paquete calidad
 
-## Proyecto Estratégico Servicios Compartidos para la Producción Estadística
+## Proyecto Estratégico Metodología y Ciencia de Datos
 
-### Diciembre 2021
+### Octubre 2022
 
 
 
@@ -183,9 +183,9 @@ background-position: 100% 0%
 
 * **Coeficiente de variación / error estándar**
 
-  + Proporción y razones definidas entre 0 y 1: **CV**
+  + Proporción y razones definidas entre 0 y 1: **SE**
   
-  + Resto: **SE**
+  + Resto: **CV**
 
 
 ---
@@ -234,24 +234,6 @@ Flujograma para evaluación de calidad de las estimaciones
 
 .center[
 &lt;img src="imagenes/flujo7.png" width="1000" /&gt;
-]
-
-
-
----
-
-background-image: url("imagenes/fondo2.PNG")
-background-size: contain;
-background-position: 100% 0%
-
-# Estándar INE
-
-### II Etapa de aplicación de estándar
-
-Flujograma para evaluación de calidad de los tabulados
-
-.center[
-&lt;img src="imagenes/flujograma.png" width="600" /&gt;
 ]
 
 
@@ -310,11 +292,11 @@ El paquete `calidad` combina conceptos de calidad con el paquete `survey`, desar
 --
 
 
-**A mediados de este año lanzamos una primera versión del paquete, considerando el estándar del INE**
+**Desde hace un año aproximadamente está en github y hace algunas semanas lo subimos a CRAN**
 
 - media
 - proporciones
-- mediana (con réplicas)
+- ~~mediana (con réplicas)~~
 - tamaños (totales poblacionales)
 - totales 
 
@@ -322,6 +304,41 @@ El paquete `calidad` combina conceptos de calidad con el paquete `survey`, desar
 class: inverse, center, middle
 
 # Implementación en R
+
+
+---
+
+background-image: url("imagenes/fondo2.PNG")
+background-size: contain;
+background-position: 100% 0%
+
+# Demostración paquete calidad
+
+Lo primero, es descargar el paquete en su versión estable desde CRAN 
+
+
+```r
+install.packages("calidad")
+```
+--
+
+... o versión en desarrollo, desde [github](https://github.com/inesscc/calidad)
+
+
+```r
+devtools::install_github("inesscc/calidad")
+```
+
+--
+
+Cargamos el paquete en la sesión y otras dependencias que usaremos
+
+
+```r
+library(calidad)
+library(survey)
+library(dplyr)
+```
 
 
 ---
@@ -341,8 +358,6 @@ Construyamos algunas variables necesarias para calcular indicadores relevantes d
 
 
 
-
-
 ```r
 casen_edit &lt;- casen %&gt;% 
   mutate(fdt = if_else(activ %in% c(1, 2), 1, 0, missing = 0), # fuerza de trabajo
@@ -358,34 +373,14 @@ casen_edit &lt;- casen %&gt;%
 - desocupado
 - metro (pertenece a la región metropolitana)
 
+
 ---
-
-
 
 background-image: url("imagenes/fondo2.PNG")
 background-size: contain;
 background-position: 100% 0%
 
-# Demostración paquete calidad
-
-Lo primero, es descargar el paquete desde [github](https://github.com/inesscc/calidad)
-
-
-
-```r
-library(devtools)
-install_github("inesscc/calidad")
-```
---
-
-Cargamos el paquete en la sesión
-
-
-```r
-library(calidad)
-```
-
---
+# Panorama general
 
 Declaramos el diseño complejo con la función `svydesign` de `survey`
 
@@ -396,6 +391,7 @@ options(survey.lonely.psu = "certainty")
 
 Debemos decirle a `R` qué hacer con la varianza cuando encuentra estratos con una sola UPM
 
+
 ---
 background-image: url("imagenes/fondo2.PNG")
 background-size: contain;
@@ -404,21 +400,19 @@ background-position: 100% 0%
 # Panorama general
 
 
-El paquete `calidad` tiene 2 grandes familias de funciones:
+El paquete `calidad` tiene 2 tipos de funciones:
 
-- *create_*: permiten **crear** los insumos para el estándar
-- *evaluate_*: permiten hacer la **evaluación** del estándar
+- *create_*: **crean** los insumos para el estándar
+- *evaluate*:  **evaluación** del estándar
 
 --
 
 Podemos hacer los siguientes cálculos
 
--  media (ingreso)
--  proporción o razón (ocupación) 
--  suma de variables continuas (ingreso) 
--  conteo de unidades (ocupación)  
--  mediana (ingreso)
-
+-  media (create_mean)
+-  proporción o razón (create_prop) 
+-  suma de variables continuas (create_total) 
+-  conteo de unidades (create_size)  
 
 
 ---
@@ -427,7 +421,7 @@ background-image: url("imagenes/fondo2.PNG")
 background-size: contain;
 background-position: 100% 0%
 
-# Panorama general
+# Creando los insumos: create_mean
 
 Queremos calcular la edad media para mujeres y hombres
 
@@ -435,71 +429,27 @@ Queremos calcular la edad media para mujeres y hombres
 
 
 ```r
-create_mean(var = edad, dominios = sexo, disenio = dc)
+create_mean(var = "edad", domains = "sexo", design = dc)
 ```
 
 ```
-##   sexo     mean        se    gl     n    coef_var
+##   sexo     stat        se    df     n          cv
 ## 1    1 35.81776 0.1320879 10701 86096 0.003687776
 ## 2    2 38.88116 0.2030783 10818 99341 0.005223053
 ```
 
 - `var`: variable a estimar
-- `dominios`: desagregaciones
-- `disenio`: diseño muestral creado con `svydesign`
+- `domains`: desagregaciones
+- `design`: diseño muestral creado con `svydesign`
 
 --
 
 La función genera:
 - estimación 
 - error estándar (se)
-- grados de libertad (gl)
+- coeficiente de variación (CV)
+- grados de libertad (df)
 - tamaño muestral (n)
-
-
----
-background-image: url("imagenes/fondo2.PNG")
-background-size: contain;
-background-position: 100% 0%
-
-# Panorama general
-
-A diferencia de `survey`, en el paquete `calidad` no es necesario utilizar "~"  
-
-
-```r
-# Argumentos con paquete survey
-svyby(formula = ~edad, by = ~sexo, design =  dc, FUN = svymean) 
-```
-
-
---
-
-Tampoco se requiere que los argumentos estén escritos como *strings*
-
---
-
-Sin embargo, existe la libertad para usar *strings*
-
-
-```r
-# Argumentos con paquete calidad
-create_mean(var = "edad", dominios = sexo,  disenio = dc)
-```
-
-```
-##   sexo     mean        se    gl     n    coef_var
-## 1    1 35.81776 0.1320879 10701 86096 0.003687776
-## 2    2 38.88116 0.2030783 10818 99341 0.005223053
-```
-
---
-
-Ya veremos por qué podría ser útil que los argumentos sean strings
-
-.center[
-&lt;img src="https://media.giphy.com/media/xUPGcz2H1TXdCz4suY/giphy.gif" width="150" /&gt;
-]
 
 
 ---
@@ -518,7 +468,7 @@ Para ello, contamos con la función `create_prop`
 
 
 ```r
-create_prop(var = desocupado, dominios = sexo, disenio = dc)
+create_prop(var = "desocupado", domains = "sexo", design = dc)
 ```
 
 --
@@ -531,7 +481,7 @@ Para ello, utilizamos el argumento `subpop`
 
 
 ```r
-create_prop(var = desocupado, dominios = sexo, subpop = fdt, disenio = dc)
+create_prop(var = "desocupado", domains = "sexo", subpop = "fdt", design = dc)
 ```
 
 --
@@ -557,15 +507,15 @@ Se debe agregar otra variable utilizando un signo +
 
 
 ```r
-create_prop(var = desocupado, dominios = sexo+metro, subpop = fdt, disenio = dc)
+create_prop(var = "desocupado", domains = "sexo+metro", subpop = "fdt", design = dc)
 ```
 
 ```
-##   sexo metro  objetivo          se   coef_var   gl     n
-## 1    1     0 0.1171641 0.002540917 0.02168682 7977 34097
-## 2    2     0 0.1417696 0.003012865 0.02125184 7750 27786
-## 3    1     1 0.1097366 0.004349727 0.03963790 2019  9901
-## 4    2     1 0.1364608 0.008565356 0.06276788 1972  9055
+##   sexo metro      stat          se   df     n         cv
+## 1    1     0 0.1171641 0.002540917 7977 34097 0.02168682
+## 2    2     0 0.1417696 0.003012865 7750 27786 0.02125184
+## 3    1     1 0.1097366 0.004349727 2019  9901 0.03963790
+## 4    2     1 0.1364608 0.008565356 1972  9055 0.06276788
 ```
 
 ---
@@ -606,34 +556,34 @@ background-position: 100% 0%
 
 # Creando los insumos: create_prop
 
-La función `create_prop` permite incluir el argumento `denominador`
+La función `create_prop` permite incluir el argumento `denominator`
 
 
 ```r
-create_prop(var = ocupado_hombre, denominador = ocupada_mujer, 
-            subpop = fdt, disenio = dc)
+create_prop(var = "ocupado_hombre", denominator = "ocupada_mujer", 
+            subpop = "fdt", design = dc)
 ```
 
 ```
-##                objetivo         se   coef_var    gl     n
-## ocupado_hombre 1.186844 0.01190812 0.01003344 10476 70576
+##       stat           se    df     n         cv
+## 1 1.186844 0.0001418034 10590 80839 0.01003344
 ```
 
 --
 
-Podemos agregar el parámetro `dominios`, si queremos desagregar 
+Podemos incluir el parámetro `domains`, si queremos desagregar 
 
 
 
 ```r
-create_prop(var = ocupado_hombre, denominador = ocupada_mujer, 
-            dominios = metro , subpop = fdt, disenio = dc)
+create_prop(var = "ocupado_hombre", denominator = "ocupada_mujer", 
+            domains = "metro" , subpop = "fdt", design = dc)
 ```
 
 ```
-##   metro objetivo         se   coef_var   gl     n
-## 1     0 1.238095 0.01312396 0.01060013 8407 53906
-## 2     1 1.127986 0.02073977 0.01838654 2069 16670
+##   metro     stat         se   df     n         cv
+## 1     0 1.238095 0.01312396 8510 61883 0.01060013
+## 2     1 1.127986 0.02073977 2080 18956 0.01838654
 ```
 
 
@@ -685,17 +635,17 @@ Evaluemos si la media de edad por sexo, cumple con el estándar
 
 
 ```r
-est &lt;- create_mean(var = edad, dominios = sexo, disenio = dc)
-evaluate_mean(est)
+est &lt;- create_mean(var = "edad", domains = "sexo", design =  dc)
+evaluate(est)
 ```
 
 ```
-##   sexo     mean        se    gl     n    coef_var       eval_n       eval_gl
-## 1    1 35.81776 0.1320879 10701 86096 0.003687776 n suficiente gl suficiente
-## 2    2 38.88116 0.2030783 10818 99341 0.005223053 n suficiente gl suficiente
-##      eval_cv calidad
-## 1 cv &lt;= 0.15  fiable
-## 2 cv &lt;= 0.15  fiable
+##   sexo     stat        se    df     n          cv                 eval_n
+## 1    1 35.81776 0.1320879 10701 86096 0.003687776 sufficient sample size
+## 2    2 38.88116 0.2030783 10818 99341 0.005223053 sufficient sample size
+##         eval_df    eval_cv    label
+## 1 sufficient df cv &lt;= 0.15 reliable
+## 2 sufficient df cv &lt;= 0.15 reliable
 ```
 
 --
@@ -703,9 +653,9 @@ evaluate_mean(est)
 Tenemos 4 columnas nuevas
 
 - `eval_n`: indica si el tamaño muestral es sufciente
-- `eval_gl`: indica si los gl son suficientes
+- `eval_df`: indica si los gl son suficientes
 - `eval_cv`: indica el tramo en el que está el cv
-- `calidad`: evaluación final de la estimación
+- `label`: evaluación final de la estimación
 
 --
 
@@ -728,25 +678,25 @@ Veamos el caso de la tasa de desempleo
 
 
 ```r
-est &lt;-  create_prop(var = desocupado, subpop = fdt, dominios = sexo, disenio = dc)
-evaluate_prop(est)
+est &lt;-  create_prop(var = "desocupado", subpop = "fdt", domains = "sexo", design = dc)
+evaluate(est)
 ```
 
 ```
-##   sexo  objetivo          se   coef_var   gl     n       eval_n       eval_gl
-## 1    1 0.1138937 0.002402195 0.02109156 9996 43998 n suficiente gl suficiente
-## 2    2 0.1393067 0.004271094 0.03065964 9722 36841 n suficiente gl suficiente
-##   prop_est tipo_eval cuadratica     eval_se eval_cv calidad
-## 1 &lt;= a 0.5   Eval SE 0.02610701 SE adecuado    &lt;NA&gt;  fiable
-## 2 &lt;= a 0.5   Eval SE 0.02985879 SE adecuado    &lt;NA&gt;  fiable
+##   sexo      stat          se   df     n         cv                 eval_n
+## 1    1 0.1138937 0.002402195 9996 43998 0.02109156 sufficient sample size
+## 2    2 0.1393067 0.004271094 9722 36841 0.03065964 sufficient sample size
+##         eval_df prop_est eval_type  quadratic       eval_se eval_cv    label
+## 1 sufficient df   &lt;= 0.5   Eval SE 0.02610701 admissible SE    &lt;NA&gt; reliable
+## 2 sufficient df   &lt;= 0.5   Eval SE 0.02985879 admissible SE    &lt;NA&gt; reliable
 ```
 --
 
 Además de las columnas ya vistas, tenemos 
 
 - `prop_est`
-- `tipo_eval`
-- `cuadratica`
+- `eval_type`
+- `quadratic`
 - `eval_se`
 - `eval_cv`
 
@@ -763,32 +713,32 @@ El estándar establece que un tabulado puede ser publicado si el 50% de sus celd
 
 --
 
-Para saber si el tabulado debe ser publicado, usamos el argumento `publicar`
+Para saber si el tabulado debe ser publicado, usamos el argumento `publish`
 
 
 ```r
-est &lt;-  create_tot(var = desocupado, subpop = fdt, dominios = region+sexo, disenio = dc)
-evaluate_tot(est, publicar = T) %&gt;% 
-  select(region, sexo, total, publicacion, aprueba) %&gt;% 
+est &lt;-  create_size(var = "desocupado", subpop = "fdt", domains = "region+sexo", design = dc)
+evaluate(est, publish = T) %&gt;% 
+  select(region, sexo, stat, label, publication, pass) %&gt;% 
   slice(1:6)
 ```
 
 ```
-##   region sexo total       publicacion                      aprueba
-## 1      1    1  9436 publicar tabulado 100% de estimaciones fiables
-## 2      2    1 21139 publicar tabulado 100% de estimaciones fiables
-## 3      3    1  8586 publicar tabulado 100% de estimaciones fiables
-## 4      4    1 22801 publicar tabulado 100% de estimaciones fiables
-## 5      5    1 56607 publicar tabulado 100% de estimaciones fiables
-## 6      6    1 24507 publicar tabulado 100% de estimaciones fiables
+##   region sexo  stat    label publication                    pass
+## 1      1    1  9436 reliable     publish 100% reliable estimates
+## 2      2    1 21139 reliable     publish 100% reliable estimates
+## 3      3    1  8586 reliable     publish 100% reliable estimates
+## 4      4    1 22801 reliable     publish 100% reliable estimates
+## 5      5    1 56607 reliable     publish 100% reliable estimates
+## 6      6    1 24507 reliable     publish 100% reliable estimates
 ```
 
 --
 
 Tenemos 2 nuevas columnas
 
-- `publicacion`: evaluación general del tabulado
-- `aprueba`: porcentaje de celdas con categoría fiable
+- `publication`: evaluación general del tabulado
+- `pass`: porcentaje de celdas con categoría fiable
 
 
 
@@ -851,23 +801,11 @@ background-position: 100% 0%
 
 # Nuevos desarrollos con CEPAL
 
-**Nombres alineados con la teoría** 🤓
-
-- `create_mean`: media 
-- `create_total`: suma de variable continua (create_tot_con)
-- `create_size`: conteo de casos (create_tot)
-- `create_prop`: proporciones
-
---
-
-.red[`create_size` != `create_tot`] 
-
---
-
 **Nuevos indicadores de calidad**
 
 **Flexibilización de umbrales**
 
+**Alinear nombres con la teoría**
 
 ---
 background-image: url("imagenes/fondo2.PNG")
@@ -878,18 +816,35 @@ background-position: 100% 0%
 
 
 
-.center[
-&lt;img src="imagenes/flujo_cepal.png" width="430" /&gt;
+.pull-left[
+&lt;img src="imagenes/flujo_cepal.png" width="400" /&gt;
 ]
 
 
+--
+
+.pull-right[
+
+### Suprimir 
+
+### Revisar
+
+### Publicar
+
+
+]
 
 
 --
 
 .center[
+
 ### ¡Veamos un poco de código! 
+
 ]
+
+
+
 
 ---
 
@@ -903,8 +858,8 @@ Se deben incluir nuevos parámetros en las funciones `create_`
 
 
 ```r
-est &lt;- create_size(var = desocupado, dominios = region+sexo, disenio = dc, 
-*                  unweighted = T, deff = T, ess = T)
+est &lt;- create_size(var = "desocupado", domains = "region+sexo", design = dc, 
+*                  unweighted = T, deff = T, ess = T, df_type = "eclac")
 ```
 
 --
@@ -913,13 +868,13 @@ Y agregar cepal  en evaluate
 
 
 ```r
-*evaluate_size(est, scheme = "cepal") %&gt;%
-  select(region, sexo, total, n, gl, coef_var, unweighted, ess, tag) %&gt;% 
+*evaluate(est, scheme = "eclac") %&gt;%
+  select(region, sexo, stat, n, df, cv, unweighted, ess, label) %&gt;% 
   slice(1:6)
 ```
 
 ```
-##   region sexo total    n   gl   coef_var unweighted      ess     tag
+##   region sexo  stat    n   df         cv unweighted      ess   label
 ## 1      1    1  9436 3981  419 0.08412127        220 2545.121 publish
 ## 2      2    1 21139 3572  493 0.08197950        243 2130.673 publish
 ## 3      3    1  8586 3468  557 0.08745271        205 2076.391 publish
@@ -949,22 +904,22 @@ background-position: 100% 0%
 
 
 ```r
-est &lt;- create_size(var = desocupado, dominios = region+sexo, disenio = dc,
-                   unweighted = T, deff = T, ess = T)
+est &lt;- create_size(var = "desocupado", domains = "region+sexo", design = dc,
+                   unweighted = T, deff = T, ess = T, df_type = "ine")
 
-*evaluate_size(est, scheme = "cepal", unweighted = 220, ess = 200) %&gt;%
-  select(region, sexo, total, n, gl, coef_var, unweighted, ess, tag) %&gt;% 
+*evaluate(est, scheme = "eclac", unweighted = 220, ess = 200) %&gt;%
+  select(region, sexo, stat, n, df, cv, unweighted, ess, label) %&gt;% 
   slice(1:6)
 ```
 
 ```
-##   region sexo total    n   gl   coef_var unweighted      ess     tag
-## 1      1    1  9436 3981  419 0.08412127        220 2545.121 publish
-## 2      2    1 21139 3572  493 0.08197950        243 2130.673 publish
-## 3      3    1  8586 3468  557 0.08745271        205 2076.391 supress
-## 4      4    1 22801 3783  495 0.08145155        238 2402.469 publish
-## 5      5    1 56607 8397 1119 0.06976443        511 2987.021 publish
-## 6      6    1 24507 5830  611 0.07226518        327 3470.302 publish
+##   region sexo  stat   n  df         cv unweighted      ess   label
+## 1      1    1  9436 220 144 0.08412127        220 140.6497 supress
+## 2      2    1 21139 243 167 0.08197950        243 144.9478 supress
+## 3      3    1  8586 205 138 0.08745271        205 122.7394 supress
+## 4      4    1 22801 238 146 0.08145155        238 151.1466 supress
+## 5      5    1 56607 511 322 0.06976443        511 181.7754 supress
+## 6      6    1 24507 327 175 0.07226518        327 194.6464 supress
 ```
 
 
@@ -981,19 +936,15 @@ Queremos calcular la media para varias variables
 
 --
 
-En este caso, queremos la media de `edad` y `escolaridad`, según sexo
+En este caso, queremos la media de `edad` y `ing_aut_hog`, según sexo
 
---
-
-Podemos generar un loop, agregando el parámetro `standard_eval = T`
 
 
 
 ```r
 insumos &lt;- data.frame()
-for (var in c("edad", "esc")) {
-  insumo &lt;- create_mean(var = var, dominios = "sexo", disenio = dc,
-                        standard_eval = T, rm.na = T )  
+for (v in c("edad", "ing_aut_hog")) {
+  insumo &lt;- create_mean(var = v, domains = "sexo", design = dc, rm.na = T )  
   insumos &lt;- bind_rows(insumos, insumo)
 }
 ```
@@ -1004,8 +955,8 @@ Podemos hacer lo mismo, utilizando el paquete `purrr` (mucho más recomendado qu
 
 
 ```r
-insumos &lt;- map_df(c("edad", "esc"), ~create_mean(var = .x, dominios = "sexo",
-                                                   disenio = dc, standard_eval = T, rm.na = T ))
+insumos &lt;- map_df(c("edad", "ing_aut_hog"), ~create_mean(var = .x, domains = "sexo",
+                                                   design = dc, rm.na = T ))
 ```
 
 
@@ -1019,7 +970,7 @@ background-position: 100% 0%
 
 # Combinación de estándares
 
-El objetivo es generar una herramienta que:
+La idea es generar una herramienta que:
 
 - Implemente los dos estándares
 
@@ -1030,6 +981,7 @@ El objetivo es generar una herramienta que:
 ]
 
 
+
 ---
 background-image: url("imagenes/fondo2.PNG")
 background-size: contain;
@@ -1038,16 +990,17 @@ background-position: 100% 0%
 # ¿En qué estamos?
 
 
-- Junto a CEPAL estamos preparando material de difusión para ONEs de la región  
+* Mantenimiento constante
 
-- Traducción y preparación para publicar el paquete en CRAN
+* Junto a CEPAL estamos preparando instancias de difusión:
+  + RTC (aquí estamos)
+  + Intersecretariat Working Group on Household Surveys
+  
+* Preparación de material de difusión 
 
-- Grupo de trabajo sobre calidad durante 2022 (coordinado por CEPAL)
+* Integración de `calidad` con `dataine`
 
---
-
-- Paquete de *Survey Solutions* para vincular procesamiento con publicación
-
+* Evaluación de nuevos desarrollos
 
 ---
 
@@ -1073,14 +1026,19 @@ Pueden generar *issues* o nuevas ramas de desarrollo
 
 --
 
-Si tienen propuestas de mejora o nuevos desarrollos, estaremos felices de revisarlo e incorporarlo al paquete  
+Si tienen **propuestas de mejora, reportes de errores o nuevos desarrollos**, estaremos felices de revisarlo e incorporarlo al paquete  
 
 .center[
 ### 😄😄😄😄😄
 ]
 
 
+- Klaus Lehmann: kilehmannm@ine.gob.cl
+- Ignacio Agloni: ifaglonij@ine.gob.cl
+- Ricardo Pizarro: rapizarros@ine.gob.cl
 
+
+https://github.com/inesscc/calidad
 
 
 ---
@@ -1094,9 +1052,9 @@ class: center, middle
 
 ## Presentación paquete calidad
 
-## Proyecto Estratégico Servicios Compartidos para la Producción Estadística
+## Proyecto Estratégico Metodología y Ciencia de Datos
 
-### Diciembre 2021
+### Octubre 2022
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
@@ -1145,6 +1103,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable
