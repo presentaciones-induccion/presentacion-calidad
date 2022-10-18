@@ -22,9 +22,11 @@ class: center, middle
 
 <img src="imagenes/logo_portada2.png" width="200" />
 
-## Presentación paquete calidad
+## Presentación librería calidad
 
-## Proyecto Estratégico Metodología y Ciencia de Datos
+## Proyecto Estratégico Metodología y Ciencia de Datos para la Producción Estadística 
+
+## Subdirección Técnica
 
 ### Octubre 2022
 
@@ -224,7 +226,7 @@ background-position: 100% 0%
 
 * **Grados de libertad (gl)** 
 
-  + .small[**Proporción y razones definidas entre 0 y 1**, el cálculo se realiza considerando las unidades que participan en el “denominador”.]
+  + .small[**Proporción y razones definidas entre 0 y 1**, el cálculo se realiza considerando las unidades que participan en el “denominador”]
 
   + .small[**Resto**, el cálculo se realiza considerando las unidades que presentan la característica de interés] 
 
@@ -399,7 +401,7 @@ background-position: 100% 0%
 
 # Demostración paquete calidad
 
-Trabajaremos con los datos de CASEN 2020 (cargados en el paquete) 
+Trabajaremos con los datos de la Encuesta de Caracterización Socioeconómica (CASEN) 2020 (cargados en el paquete) 
 
 --
 
@@ -486,7 +488,7 @@ create_mean(var = "edad", domains = "sexo", design = dc)
 --
 
 La función genera:
-- estimación 
+- estimación (stat)
 - error estándar (se)
 - coeficiente de variación (CV)
 - grados de libertad (df)
@@ -646,7 +648,7 @@ background-position: 100% 0%
 
 # Evaluación del estándar
 
-Evaluemos si la media de edad por sexo, cumple con el estándar
+Evaluemos si la media de edad por sexo cumple con el estándar
 
 --
 
@@ -970,7 +972,7 @@ background-position: 100% 0%
 
 * Integración de `calidad` con `dataine`
 
-* Evaluación de nuevos desarrollos
+* Comienzo de nuevos desarrollos
 
 ---
 
@@ -1008,7 +1010,20 @@ Si tienen **propuestas de mejora, reportes de errores o nuevos desarrollos**, es
 - Ricardo Pizarro: rapizarros@ine.gob.cl
 
 
-https://github.com/inesscc/calidad
+.center[
+<img src="https://cdn-icons-png.flaticon.com/512/25/25231.png?display=inline-block" width="70" />
+
+[https://github.com/inesscc/calidad](https://github.com/inesscc/calidad)
+
+]
+
+
+
+
+
+
+
+
 
 
 ---
@@ -1020,8 +1035,10 @@ class: center, middle
 
 <img src="imagenes/logo_portada2.png" width="200" />
 
-## Presentación paquete calidad
+## Presentación librería calidad
 
-## Proyecto Estratégico Metodología y Ciencia de Datos
+## Proyecto Estratégico Metodología y Ciencia de Datos para la Producción Estadística 
+
+## Subdirección Técnica
 
 ### Octubre 2022
