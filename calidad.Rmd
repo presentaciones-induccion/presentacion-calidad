@@ -73,81 +73,7 @@ background-image: url("imagenes/fondo2.PNG")
 background-size: contain;
 background-position: 100% 0%
 
-
-# ¿Qué significa calidad estadística? 
-
-### Pensemos en 2 distribuciones distintas
-
-```{r, echo=FALSE}
-library(tidyverse)
-library(kableExtra)
-```
-
-
-.pull-left[
-
-```{r,  fig.align= "center", fig.height=4, echo=FALSE}
-values1 <- rnorm(100000, mean = 0, sd = 10)
-ci_1 <- c(mean(values1) - 1.96 * sd(values1), mean(values1) + 1.96 * sd(values1))
-
-values2 <- rnorm(100000, mean = 0, sd = 4)
-ci_2 <- c(mean(values2) - 1.96 * sd(values2), mean(values2) + 1.96 * sd(values2))
-
-
-distributions <- bind_rows(bind_cols(values = values1, varianza = "alta varianza"),  bind_cols(values = values2, varianza = "baja varianza")) 
-
-distributions %>%
-  ggplot() + 
-  geom_density(aes(x = values, fill = varianza), alpha=0.5) +
-  labs(title = "Alta y baja varianza") +
-  theme(plot.title = element_text(hjust = 0.5, size = 20),
-        axis.title = element_blank(),
-        legend.text = element_text(size = 12),
-         axis.text = element_text(size = 14) 
-        )
-
-
-```
-]
-
-
-
-.pull-right[
-
-```{r, fig.align= "center", echo=FALSE, fig.height=4 }
-df <- data.frame(estimacion = c("alta varianza", "alta varianza", "baja varianza", "baja varianza"), valor = c(ci_1, ci_2))
-
-
-ggplot(df, aes(x = as.factor(estimacion), y = valor)) +
-  geom_point() +
-  geom_segment(aes(x = estimacion , xend = estimacion, y = 0, yend = valor, colour = "segment")) +
-  coord_flip() +
-  geom_hline(yintercept = 0, linetype = "dashed") +
-  labs(title = "Intervalos de confianza") +
-  theme(legend.position = "none",
-        axis.title = element_blank(),
-        plot.title = element_text(hjust = 0.5, size = 20),
-        axis.text = element_text(size = 14) 
-        
-        )
-
-```
-]
-
---
-
-Intervalos de confianza demasiado amplios, no son informativos
-
---
-
-Una estimación debe cumplir una cierta precisión (calidad) para que sea útil 
-
----
-background-image: url("imagenes/fondo2.PNG")
-background-size: contain;
-background-position: 100% 0%
-
-# Ejemplo de una estimación con baja precisión
+# ¿Qué significa calidad estadística?
 
 
 .pull-left[
@@ -176,24 +102,6 @@ En 2020 el INE publica un estándar de calidad para las estimaciones con **encue
 
 .center[
 <img src="imagenes/estandar_ine.png" width="900" />
-]
-
-
-
----
-
-background-image: url("imagenes/fondo2.PNG")
-background-size: contain;
-background-position: 100% 0%
-
-# Estándar INE
-
-- **Cuadro estadístico**, arreglos ordenados de los datos procesados para facilitar la lectura e interpretación
-
-<br>
-
-.center[
-<img src="imagenes/tabla1.png" width="900" />
 ]
 
 
@@ -387,8 +295,6 @@ Cargamos el paquete en la sesión y otras dependencias que usaremos
 library(calidad)
 library(survey)
 library(dplyr)
-
-
 ```
 
 
