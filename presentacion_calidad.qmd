@@ -141,12 +141,11 @@ El paquete **calidad** implementa el estándar mediante R
 ## [Nuevos indicadores]{.medium-par}
 
 ::: {.incremental .medium-par}
-- coeficiente de variación
 - coeficiente de variación logarítmico 
-- tamaño de muestra
 - tamaño de muestra efectivo 
 - conteo de casos no ponderado
-- grados de libertad
+- leve diferencia en grados de libertad
+
 :::
 
 ## [Ampliación]{.medium-par}
