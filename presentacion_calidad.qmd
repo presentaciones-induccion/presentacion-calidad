@@ -23,6 +23,9 @@ format:
 
 [**Proyecto Ciencia de Datos**]{.big-par .center-justified}
 
+[**Octubre 2023**]{.big-par .center-justified}
+
+
 # [¿Qué significa calidad estadística? ¿Cómo la medimos?]{.biggest}
 
 ## Algunas medidas
@@ -345,3 +348,4 @@ assess(pobreza_sexo_cepal,  scheme = "eclac") %>%
 
 [**Proyecto Ciencia de Datos**]{.big-par .center-justified}
 
+[**Octubre 2023**]{.big-par .center-justified}
