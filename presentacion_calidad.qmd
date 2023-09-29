@@ -1,0 +1,347 @@
+---
+# title: "Capacitación en R y herramientas de productividad"
+# author: "Abril 2021"
+format:
+  revealjs:
+    auto-stretch: false
+    margin: 0
+    slide-number: true
+    scrollable: true
+    preview-links: auto
+    logo: imagenes/logo_portada2.png
+    css: ine_quarto_styles.css
+    # footer: <https://quarto.org>
+---
+
+# 
+
+<img src="imagenes/logo_portada2.png" width="20%"/>
+
+[**Antecedentes paquete y aplicativo calidad**]{.big-par .center-justified}
+
+[**Subdirección Técnica**]{.big-par .center-justified}
+
+[**Proyecto Ciencia de Datos**]{.big-par .center-justified}
+
+# [¿Qué significa calidad estadística? ¿Cómo la medimos?]{.biggest}
+
+## Algunas medidas
+
+::: {.medium-par .incremental}
+- Error estándar
+- Coeficiente de variación
+- Coeficiente de variación logarítmico
+- Grados de libertad
+- Tamaño de muestra
+- Tamaño de muestra efectivo
+- Deff
+- Intervalo de confianza
+- Entre otros
+
+
+
+:::
+
+## Estándar INE
+
+En 2020 el INE publica un estándar de calidad para las estimaciones con **encuestas de hogares**
+
+Departamento de Metodología e Innovación Estadística
+
+<span class="center-justified">
+<img src="imagenes/estandar_ine.png" width="900" />
+</span>
+
+## Estándar INE
+
+**Cuadro estadístico**: arreglo ordenado de los datos procesados para facilitar la lectura e interpretación
+
+<br>
+<span class="center-justified">
+<img src="imagenes/tabla2.png" width="900" />
+</span>
+
+
+## Estándar INE
+
+- **Tamaño muestral (tm)**, unidades de análisis que nutren las estimaciones (viviendas, hogares y/o personas)
+
+* **Grados de libertad (gl)** 
+  + [Tratamiento diferenciado para las proporciones y razones definidas entre 0 y 1]{.custom-par}
+
+<img src="imagenes/grados_libertad.png" width="800" />
+
+* **Coeficiente de variación / error estándar**
+
+  + Proporción y razones definidas entre 0 y 1: **SE**
+  
+  + Resto: **CV**
+
+
+## Dicotomía de las proporciones
+
+<br>
+<br>
+
+<span class="center-justified">
+<img src="imagenes/se_cv.png" width="900" />
+</span>
+
+## Flujograma calidad
+
+<br/>
+
+<span class="center-justified">
+<img src="imagenes/flujo7.png" width="1000" />
+</span>
+
+
+
+## Introducción paquete calidad
+
+**¿Cómo pasar del documento a la práctica?**
+
+<span class="center-justified">
+<img src="https://media.giphy.com/media/a5viI92PAF89q/giphy.gif" width="200" />
+</span>
+
+. . .
+
+Existen múltiples herramientas (Stata, R, SAS, Python) y todas son válidas
+
+
+. . .
+
+El paquete **calidad** implementa el estándar mediante R
+
+. . .
+
+**Objetivos del paquete**
+
+::: {.incremental .medium-par}
+- Facilitar la aplicación del estándar a usuarios externos
+- Aumentar la eficiencia en el trabajo de los analistas
+- Reducir la probabilidad de error en la implementación
+:::
+
+
+
+## Estándar CEPAL
+
+
+::: panel-tabset 
+## [CEPAL]{.medium-par} 
+<span class="center-justified">
+<img src="imagenes/estandar_cepal.png" width="350" />
+</span>
+
+## [Nuevos indicadores]{.medium-par}
+
+::: {.incremental .medium-par}
+- coeficiente de variación
+- coeficiente de variación logarítmico 
+- tamaño de muestra
+- tamaño de muestra efectivo 
+- conteo de casos no ponderado
+- grados de libertad
+:::
+
+## [Ampliación]{.medium-par}
+
+**¿Cómo le damos autonomía a los usuarios?**
+
+**¿Qué pasa si quiero crear un estándar nuevo?**
+
+**¿Qué pasa si quiero mejorar mi estándar**
+
+:::
+
+
+## Incorporación estándar de CEPAL
+
+
+
+::: columns
+::: {.column width="40%"}
+<span class="center-justified">
+<img src="imagenes/flujo_cepal.png" width="400" />
+</span>
+:::
+
+::: {.column width="40%"}
+::: fragment
+
+<br/>
+
+**Suprimir** 
+
+**Revisar**
+
+**Publicar**
+:::
+:::
+:::
+
+
+
+
+## Introducción paquete calidad
+
+El paquete **calidad** combina conceptos de calidad con el paquete **survey**, desarrollado por Thomas Lumley
+
+<span class="center-justified">
+<img src="imagenes/ecuacion.png" width="450" />
+</span>
+
+. . .
+
+**La versión estable incluye**
+
+::: {.medium-par}
+- media
+- proporciones
+- tamaños (totales poblacionales)
+- totales 
+:::
+
+
+. . .
+
+**Combina estándares**
+
+ 
+
+## Demostración paquete calidad
+
+Versión estable desde CRAN
+
+```{r, eval=F, echo=TRUE}
+install.packages("calidad")
+```
+
+. . .
+
+... o versión en desarrollo, desde [github](https://github.com/inesscc/calidad)
+
+```{r, eval=F, echo=TRUE}
+devtools::install_github("inesscc/calidad")
+```
+
+. . .
+
+Apliquemos el estándar del INE a los datos de CASEN 2022 
+
+```{r, echo=FALSE}
+library(calidad)
+library(survey)
+library(kableExtra)
+library(dplyr)
+library(feather)
+options(survey.lonely.psu = "certainty")
+
+```
+
+
+```{r}
+
+
+
+#library(haven)
+# casen <- read_dta("data/Base de datos Casen 2022 STATA.dta")
+# casen_compacta <- casen %>% 
+#   select(sexo, pobreza, expr, activ, region, cod_upm, estrato) %>% 
+#   mutate(hombre = if_else(sexo==1,1,0),
+#                            mujer = if_else(sexo==2,1,0),
+#                            fdt = if_else(activ %in% c(1, 2), 1, 0, missing = 0), # fuerza de trabajo
+#                            ocupado = if_else(activ == 1, 1, 0, missing = 0), # persona ocupada
+#                            desocupado = if_else(activ == 2, 1, 0, missing = 0), # persona desocupada
+#                            metro = if_else(region == 13, 1, 0),
+#                            pobre_extremo = if_else(pobreza == 1,1,0),
+#                            pobre_no_extremo = if_else(pobreza == 2,1,0),
+#                            pobre = if_else(pobreza %in% c(1,2),1,0),
+#                            no_pobre = if_else(pobreza == 3,1,0))
+# 
+# 
+# write_feather(casen_compacta, "data/casen_compacta.feather")
+
+
+```
+
+```{r, results='hide'}
+casen_compacta <-  read_feather("data/casen_compacta.feather")
+dc <- svydesign(weights = ~expr, ids = ~cod_upm, strata = ~estrato, data = casen_compacta )
+pobreza_sexo <-  create_prop("pobre", domains = "hombre", design = dc)
+```
+
+
+```{r, echo=TRUE, results='hide'}
+pobreza_sexo <-  create_prop("pobre", domains = "hombre", design = dc)
+assess(pobreza_sexo)
+
+
+```
+```{r}
+assess(pobreza_sexo) %>% 
+  kbl() %>% 
+  kable_styling(font_size = 14)
+```
+
+
+
+## Aplicando estándar CEPAL
+
+Nuevos parámetros
+
+```{r, results='hide', echo=TRUE, `code-line-numbers`="2-3"}
+pobreza_sexo_cepal <-  create_prop("pobre", domains = "hombre", design = dc,
+                                   ess = TRUE, deff = T, unweighted = T, log_cv = T)
+assess(pobreza_sexo_cepal, scheme = "eclac")
+```
+
+```{r, echo=FALSE}
+assess(pobreza_sexo_cepal,  scheme = "eclac") %>% 
+  kbl() %>% 
+  kable_styling(font_size = 14)
+```
+
+
+. . .
+
+Podemos fijar nuestros propios criterios
+
+```{r, results="hide", echo=TRUE}
+pobreza_sexo_cepal <-  create_prop("pobre", domains = "hombre", design = dc,
+                                   ess = TRUE, deff = T, unweighted = T, log_cv = T)
+assess(pobreza_sexo_cepal, scheme = "eclac", ess = 24890)
+```
+
+
+```{r}
+assess(pobreza_sexo_cepal,  scheme = "eclac") %>% 
+  kbl() %>% 
+  kable_styling(font_size = 14)
+```
+
+# 
+
+```{=html}
+<!---
+# TODO: this does not work
+ .linea-superior[]
+.linea-inferior[] 
+--->
+```
+```{=html}
+<!---
+# TODO: this does not work
+ ![](imagenes/logo_portada2.png){.center style="width: 20%;"}   
+--->
+```
+<img src="imagenes/logo_portada2.png" width="20%"/>
+
+[**Antecedentes paquete y aplicativo calidad**]{.big-par .center-justified}
+
+[**Subdirección Técnica**]{.big-par .center-justified}
+
+[**Proyecto Ciencia de Datos**]{.big-par .center-justified}
+
