@@ -288,41 +288,144 @@ assess(pobreza_sexo) %>%
   kable_styling(font_size = 14)
 ```
 
+## Agreguemos dominios
+
+```{r, echo=TRUE, results='hide'}
+pobreza_sexo_region <-  create_prop("pobre", domains = "hombre+region", design = dc)
+assess(pobreza_sexo_region)
+```
+
+```{r}
+assess(pobreza_sexo_region) %>% 
+  kbl() %>% 
+  kable_styling(font_size = 14)
+```
+
+## Miremos la fuerza de trabajo
+
+```{r, echo=TRUE, results='hide'}
+pobreza_sexo_region_ocup <-  create_prop("pobre",
+                                         domains = "hombre+region+ocupado",
+                                         subpop = "fdt",
+                                         design = dc)
+assess(pobreza_sexo_region_ocup)
+```
+
+
+```{r}
+assess(pobreza_sexo_region_ocup) %>% 
+  kbl() %>% 
+  kable_styling(font_size = 14)
+```
+
 
 
 ## Aplicando estándar CEPAL
 
 Nuevos parámetros
 
-```{r, results='hide', echo=TRUE, `code-line-numbers`="2-3"}
-pobreza_sexo_cepal <-  create_prop("pobre", domains = "hombre", design = dc,
-                                   ess = TRUE, deff = T, unweighted = T, log_cv = T)
-assess(pobreza_sexo_cepal, scheme = "eclac")
+```{r, results='hide', echo=TRUE, `code-line-numbers`="5-8"}
+pobreza_sexo_region_ocup_cepal <-  create_prop("pobre", 
+                                   domains = "hombre+region+ocupado",
+                                   subpop = "fdt",
+                                   design = dc,
+                                   ess = TRUE,
+                                   deff = T, 
+                                   unweighted = T, 
+                                   log_cv = T)
+assess(pobreza_sexo_region_ocup_cepal, scheme = "eclac")
 ```
 
 ```{r, echo=FALSE}
-assess(pobreza_sexo_cepal,  scheme = "eclac") %>% 
+assess(pobreza_sexo_region_ocup_cepal,  scheme = "eclac") %>% 
   kbl() %>% 
   kable_styling(font_size = 14)
 ```
 
 
-. . .
+## Cambiando umbrales
 
 Podemos fijar nuestros propios criterios
 
 ```{r, results="hide", echo=TRUE}
-pobreza_sexo_cepal <-  create_prop("pobre", domains = "hombre", design = dc,
-                                   ess = TRUE, deff = T, unweighted = T, log_cv = T)
-assess(pobreza_sexo_cepal, scheme = "eclac", ess = 24890)
+pobreza_sexo_region_ocup_cepal <-  create_prop("pobre", 
+                                   domains = "hombre+region+ocupado",
+                                   subpop = "fdt",
+                                   design = dc,
+                                   ess = TRUE,
+                                   deff = T, 
+                                   unweighted = T, 
+                                   log_cv = T)
+assess(pobreza_sexo_region_ocup_cepal, 
+       scheme = "eclac", 
+       df = 120)
 ```
 
 
 ```{r}
-assess(pobreza_sexo_cepal,  scheme = "eclac") %>% 
+assess(pobreza_sexo_region_ocup_cepal, 
+       scheme = "eclac", 
+       df = 120) %>% 
   kbl() %>% 
   kable_styling(font_size = 14)
 ```
+
+
+## Tabla formateada
+
+::: panel-tabset 
+
+## [output formateado]{.medium-par} 
+
+```{r, echo=TRUE}
+assess(pobreza_sexo_region_ocup_cepal, 
+       scheme = "eclac", 
+       df = 120) %>% 
+  create_html()
+```
+
+## [hardcodeo]{.medium-par} 
+
+La función create_html está *hardcodeada* en los formatos 
+
+🫣🫣🫣
+
+Hay que trabajar en ella
+
+Para hacer esta presentación, tuve que modificar la clase table
+
+```{css, eval = FALSE, echo = TRUE}
+.table {
+  font-size: 11px;
+}
+
+```
+
+[¿Voluntarios/as?]{.center}
+
+:::
+
+## Desafíos
+
+**Menor complejidad**
+
+:::{.incremental .medium-par}
+- Reparar la función de medianas (réplicas)
+- Mejorar create_html
+:::
+
+. . .
+
+**Mayor complejidad**
+
+:::{.incremental .medium-par}
+- Dejar de depender de survey
+- Calcular por nosotros mismos la varianza
+:::
+. . .
+
+[Inscripciones abiertas :)]{.big-par .center} 
+
 
 # 
 
